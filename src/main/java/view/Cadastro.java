@@ -202,10 +202,18 @@ public class Cadastro extends javax.swing.JFrame {
         if(!n.isBlank() && !m.isBlank() && !c.isBlank() && !s.toString().isBlank() && !cs.toString().isBlank()) {
             if(Arrays.equals(s, cs)) {
                 double mat = Double.parseDouble(m);
-                Usuario usuario = new Usuario(n, mat, c, txtSenha.getPassword());
+                Usuario usuario = new Usuario(n, mat, c, cs);
                 usuarios.add(usuario);
                 limpaCampos();
-                JOptionPane.showMessageDialog(null, usuario);                
+                
+                Object[] opcoes = {"Confirmar", "Cancelar"};
+                int opcao = JOptionPane.showOptionDialog(this.btnCadastrar, "Usuário cadastrado com sucesso! Deseja fazer login?", "Sucesso", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, EXIT_ON_CLOSE);
+                if(opcao == 0) {
+                    Login log = new Login();
+                    log.setVisible(true);
+                    this.setVisible(false);
+                }
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Senhas devem ser iguais!");
             }

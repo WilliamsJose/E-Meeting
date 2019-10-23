@@ -5,18 +5,18 @@
  */
 package view;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
 import model.Usuario;
+import db.DB;
 
 /**
  *
  * @author Williams
  */
 public class Cadastro extends javax.swing.JFrame {
-    ArrayList<Usuario> usuarios = new ArrayList();
-
+    int ocorrencias;
     /**
      * Creates new form Cadastro
      */
@@ -196,22 +196,41 @@ public class Cadastro extends javax.swing.JFrame {
     }
     
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        String n = txtNome.getText(),m = txtMatricula.getText(),c = txtCargo.getSelectedItem().toString();
+        
+        // obtem os valores dos campos
+        String n = txtNome.getText(),m = txtMatricula.getText(), c = txtCargo.getSelectedItem().toString();
         char[] s = txtSenha.getPassword(), cs = txtConfirmaSenha.getPassword();
         
+        
+        // Verifica se os campos não estão brancos ou somente com espaço
         if(!n.isBlank() && !m.isBlank() && !c.isBlank() && !s.toString().isBlank() && !cs.toString().isBlank()) {
+            double matri = Double.parseDouble(m);
+            
+            // verifica se as senhas são iguais
             if(Arrays.equals(s, cs)) {
-                double mat = Double.parseDouble(m);
-                Usuario usuario = new Usuario(n, mat, c, cs);
-                usuarios.add(usuario);
-                limpaCampos();
                 
-                Object[] opcoes = {"Confirmar", "Cancelar"};
-                int opcao = JOptionPane.showOptionDialog(this.btnCadastrar, "Usuário cadastrado com sucesso! Deseja fazer login?", "Sucesso", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, EXIT_ON_CLOSE);
-                if(opcao == 0) {
-                    Login log = new Login();
-                    log.setVisible(true);
-                    this.setVisible(false);
+                // Conta quantas matriculas iguais a digitada existem
+                for(Usuario el : DB.usuarios) {
+                    if(el.getMatricula() == matri) {
+                        ocorrencias += 1;
+                    }
+                } 
+                
+                // Se houver mais de uma ocorrencia de matricula registrada, informa ao usuario.
+                if(ocorrencias > 0) {
+                    JOptionPane.showMessageDialog(rootPane, "Já existe um usuário com essa matrícula!");
+                    ocorrencias = 0;
+                } else {
+                    Usuario usuario = new Usuario(n, matri, c, cs);
+                    DB.usuarios.add(usuario);
+                    limpaCampos();
+
+                    // Pergunta ao usuario se ele quer fazer login, se sim redireciona para o login.
+                    Object[] opcoes = {"Sim", "Não"};
+                    int opcao = JOptionPane.showOptionDialog(this.btnCadastrar, "Usuário cadastrado com sucesso! Deseja fazer login?", "Sucesso", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, EXIT_ON_CLOSE);
+                    if(opcao == 0) {
+                        btnEntrarActionPerformed(null);
+                    }
                 }
                 
             } else {

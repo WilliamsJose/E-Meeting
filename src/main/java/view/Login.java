@@ -5,13 +5,17 @@
  */
 package view;
 
+import javax.swing.JOptionPane;
+import model.Usuario;
+import db.DB;
+import java.util.Arrays;
+
 /**
  *
  * @author Williams
  */
 public class Login extends javax.swing.JFrame {
-
-
+    DB db = new DB(null);
     /**
      * Creates new form Login
      */
@@ -30,8 +34,8 @@ public class Login extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         lbNomeApp = new javax.swing.JLabel();
-        lbNome = new javax.swing.JLabel();
-        txtNome = new javax.swing.JTextField();
+        lbMatricula = new javax.swing.JLabel();
+        txtMatricula = new javax.swing.JTextField();
         lbSenha = new javax.swing.JLabel();
         txtSenha = new javax.swing.JPasswordField();
         btnEntrar = new javax.swing.JButton();
@@ -43,7 +47,7 @@ public class Login extends javax.swing.JFrame {
         lbNomeApp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbNomeApp.setText("E-Meeting");
 
-        lbNome.setText("Usuário:");
+        lbMatricula.setText("Matricula:");
 
         lbSenha.setText("Senha:");
 
@@ -75,7 +79,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(151, 151, 151)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbNome)
+                    .addComponent(lbMatricula)
                     .addComponent(lbSenha))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -84,8 +88,8 @@ public class Login extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnEntrar))
                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(195, Short.MAX_VALUE))
+                    .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(187, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,8 +107,8 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(lbNomeApp, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(86, 86, 86)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbNome)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbMatricula)
+                    .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbSenha)
@@ -139,7 +143,34 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        // TODO add your handling code here:
+        // obtem os valores dos inputs
+        double matri = Double.parseDouble(txtMatricula.getText());
+        char[] pass = txtSenha.getPassword();
+        
+        if(txtMatricula.getText().isBlank() && txtSenha.getPassword().toString().isBlank()) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha todos os campos!");
+        } else {
+            for(int x = 0; x < DB.usuarios.size(); x++) {
+                Usuario item = DB.usuarios.get(x);
+
+                // Verifica se matricula e senha são iguais
+                if(matri == item.getMatricula() && Arrays.equals(pass, item.getSenha())) {
+                    JOptionPane.showMessageDialog(rootPane, "Bem vindo " + item.getNome() + "!");
+                    Usuario usuarioLogado = new Usuario(item.getNome(), item.getMatricula(), item.getCargo(), item.getSenha());
+                    db.setUsuarioLogado(usuarioLogado);
+                }
+
+                // Verifica se existe matricula e se senha está errada
+                if(matri == item.getMatricula() && !Arrays.equals(pass, item.getSenha())) {
+                    JOptionPane.showMessageDialog(rootPane, "Senha incorreta ou usuário não existe!");
+                }
+            }
+
+            // Mostra o usuário logado
+            if(db.getUsuarioLogado().getID() != null) {
+                JOptionPane.showMessageDialog(null, db.getUsuarioLogado());
+            }
+        }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
@@ -192,10 +223,10 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton btnEntrar;
     private javax.swing.JButton btnSair;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lbNome;
+    private javax.swing.JLabel lbMatricula;
     private javax.swing.JLabel lbNomeApp;
     private javax.swing.JLabel lbSenha;
-    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtMatricula;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 }

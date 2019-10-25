@@ -7,7 +7,7 @@ package view;
 
 import javax.swing.JOptionPane;
 import model.Usuario;
-import bdp.BDP;
+import db.DB;
 import java.util.Arrays;
 
 /**
@@ -15,7 +15,7 @@ import java.util.Arrays;
  * @author Williams
  */
 public class Login extends javax.swing.JFrame {
-    BDP db = new BDP(null);
+    DB db = new DB(null);
     /**
      * Creates new form Login
      */
@@ -151,8 +151,8 @@ public class Login extends javax.swing.JFrame {
             double matri = Double.parseDouble(txtMatricula.getText());
             char[] pass = txtSenha.getPassword();
             
-            for(int x = 0; x < BDP.usuarios.size(); x++) {
-                Usuario item = BDP.usuarios.get(x);
+            for(int x = 0; x < DB.usuarios.size(); x++) {
+                Usuario item = DB.usuarios.get(x);
 
                 // Verifica se matricula e senha são iguais
                 if(matri == item.getMatricula() && Arrays.equals(pass, item.getSenha())) {

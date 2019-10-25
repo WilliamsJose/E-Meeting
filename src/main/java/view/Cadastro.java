@@ -9,7 +9,7 @@ package view;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
 import model.Usuario;
-import db.DB;
+import bdp.BDP;
 
 /**
  *
@@ -210,7 +210,7 @@ public class Cadastro extends javax.swing.JFrame {
             if(Arrays.equals(s, cs)) {
                 
                 // Conta quantas matriculas iguais a digitada existem
-                for(Usuario el : DB.usuarios) {
+                for(Usuario el : BDP.usuarios) {
                     if(el.getMatricula() == matri) {
                         ocorrencias += 1;
                     }
@@ -222,7 +222,7 @@ public class Cadastro extends javax.swing.JFrame {
                     ocorrencias = 0;
                 } else {
                     Usuario usuario = new Usuario(n, matri, c, cs);
-                    DB.usuarios.add(usuario);
+                    BDP.usuarios.add(usuario);
                     limpaCampos();
 
                     // Pergunta ao usuario se ele quer fazer login, se sim redireciona para o login.

@@ -7,7 +7,7 @@ package view;
 
 import javax.swing.JOptionPane;
 import model.Usuario;
-import db.DB;
+import bdp.BDP;
 import java.util.Arrays;
 
 /**
@@ -15,7 +15,7 @@ import java.util.Arrays;
  * @author Williams
  */
 public class Login extends javax.swing.JFrame {
-    DB db = new DB(null);
+    BDP db = new BDP(null);
     /**
      * Creates new form Login
      */
@@ -143,15 +143,16 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        // obtem os valores dos inputs
-        double matri = Double.parseDouble(txtMatricula.getText());
-        char[] pass = txtSenha.getPassword();
         
-        if(txtMatricula.getText().isBlank() && txtSenha.getPassword().toString().isBlank()) {
+        if(txtMatricula.getText().isBlank() || txtSenha.getText().isBlank()) {
             JOptionPane.showMessageDialog(rootPane, "Preencha todos os campos!");
         } else {
-            for(int x = 0; x < DB.usuarios.size(); x++) {
-                Usuario item = DB.usuarios.get(x);
+            // obtem os valores dos inputs
+            double matri = Double.parseDouble(txtMatricula.getText());
+            char[] pass = txtSenha.getPassword();
+            
+            for(int x = 0; x < BDP.usuarios.size(); x++) {
+                Usuario item = BDP.usuarios.get(x);
 
                 // Verifica se matricula e senha são iguais
                 if(matri == item.getMatricula() && Arrays.equals(pass, item.getSenha())) {
@@ -166,7 +167,7 @@ public class Login extends javax.swing.JFrame {
                 }
             }
 
-            // Mostra o usuário logado
+            // Mostra o usuário logado, apenas para testes!!
             if(db.getUsuarioLogado().getID() != null) {
                 JOptionPane.showMessageDialog(null, db.getUsuarioLogado());
             }

@@ -18,12 +18,12 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario: " + 
-                "ID=" + this.ID +
-                ", nome=" + this.nome + 
-                ", matricula=" + this.matricula + 
-                ", cargo=" + this.cargo + 
-                ", senha=" + this.senha;
+        return "Usuario{ " + 
+                "\n ID=" + this.ID +
+                "\n nome=" + this.nome + 
+                "\n matricula=" + this.matricula + 
+                "\n cargo=" + this.cargo + 
+                "\n senha=" + this.senha + "\n}";
     }
 
     public Usuario(String nome, double matricula, String cargo, char[] senha) {

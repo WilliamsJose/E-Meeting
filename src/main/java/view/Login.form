@@ -3,6 +3,7 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -34,15 +35,19 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="TelaLogin">
+      <Properties>
+        <Property name="alignmentX" type="float" value="0.0"/>
+        <Property name="alignmentY" type="float" value="0.0"/>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="168" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="lbMatricula" min="-2" max="-2" attributes="0"/>
                       <Component id="lbSenha" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbCpf" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -52,7 +57,7 @@
                           <Component id="btnEntrar" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="txtSenha" min="-2" pref="295" max="-2" attributes="0"/>
-                      <Component id="txtMatricula" min="-2" pref="295" max="-2" attributes="0"/>
+                      <Component id="txtCpf" min="-2" pref="295" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="199" max="32767" attributes="0"/>
               </Group>
@@ -78,8 +83,8 @@
                   <Component id="lbNomeApp" min="-2" pref="46" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lbMatricula" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtMatricula" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbCpf" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtCpf" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -91,9 +96,9 @@
                       <Component id="btnEntrar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnCadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="162" max="32767" attributes="0"/>
+                  <EmptySpace pref="170" max="32767" attributes="0"/>
                   <Component id="btnSair" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -105,12 +110,12 @@
             <Property name="text" type="java.lang.String" value="E-Meeting"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbMatricula">
+        <Component class="javax.swing.JLabel" name="lbCpf">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Matricula:"/>
+            <Property name="text" type="java.lang.String" value="CPF:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtMatricula">
+        <Component class="javax.swing.JTextField" name="txtCpf">
         </Component>
         <Component class="javax.swing.JLabel" name="lbSenha">
           <Properties>

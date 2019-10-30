@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 import java.util.UUID;
 /**
@@ -12,6 +7,7 @@ import java.util.UUID;
 public class Usuario {
     private final UUID ID;
     private String nome;
+    private String cpf;
     private double matricula;
     private String cargo;
     private char[] senha;
@@ -21,17 +17,27 @@ public class Usuario {
         return "Usuario{ " + 
                 "\n ID=" + this.ID +
                 "\n nome=" + this.nome + 
+                "\n CPF=" + this.cpf + 
                 "\n matricula=" + this.matricula + 
                 "\n cargo=" + this.cargo + 
                 "\n senha=" + this.senha + "\n}";
     }
 
-    public Usuario(String nome, double matricula, String cargo, char[] senha) {
+    public Usuario(String nome, String cpf, double matricula, String cargo, char[] senha) {
         this.ID = UUID.randomUUID();
         this.nome = nome;
+        this.cpf = cpf;
         this.matricula = matricula;
         this.cargo = cargo;
         this.senha = senha;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
     
     public UUID getID() {

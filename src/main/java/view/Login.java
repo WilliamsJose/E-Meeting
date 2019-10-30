@@ -22,8 +22,8 @@ public class Login extends javax.swing.JFrame {
 
         TelaLogin = new javax.swing.JPanel();
         lbNomeApp = new javax.swing.JLabel();
-        lbMatricula = new javax.swing.JLabel();
-        txtMatricula = new javax.swing.JTextField();
+        lbCpf = new javax.swing.JLabel();
+        txtCpf = new javax.swing.JTextField();
         lbSenha = new javax.swing.JLabel();
         txtSenha = new javax.swing.JPasswordField();
         btnEntrar = new javax.swing.JButton();
@@ -31,11 +31,15 @@ public class Login extends javax.swing.JFrame {
         btnSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+
+        TelaLogin.setAlignmentX(0.0F);
+        TelaLogin.setAlignmentY(0.0F);
 
         lbNomeApp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbNomeApp.setText("E-Meeting");
 
-        lbMatricula.setText("Matricula:");
+        lbCpf.setText("CPF:");
 
         lbSenha.setText("Senha:");
 
@@ -65,10 +69,10 @@ public class Login extends javax.swing.JFrame {
         TelaLoginLayout.setHorizontalGroup(
             TelaLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TelaLoginLayout.createSequentialGroup()
-                .addGap(151, 151, 151)
+                .addGap(168, 168, 168)
                 .addGroup(TelaLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbMatricula)
-                    .addComponent(lbSenha))
+                    .addComponent(lbSenha)
+                    .addComponent(lbCpf))
                 .addGap(18, 18, 18)
                 .addGroup(TelaLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(TelaLoginLayout.createSequentialGroup()
@@ -76,7 +80,7 @@ public class Login extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnEntrar))
                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(199, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TelaLoginLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -95,8 +99,8 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(lbNomeApp, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(86, 86, 86)
                 .addGroup(TelaLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbMatricula)
-                    .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbCpf)
+                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(TelaLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbSenha)
@@ -105,9 +109,9 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(TelaLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEntrar)
                     .addComponent(btnCadastrar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
                 .addComponent(btnSair)
-                .addGap(14, 14, 14))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -125,35 +129,42 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+        // Tratamento de exceção array vazia.
         try {
-            
-            if(txtMatricula.getText().isBlank() || txtSenha.getText().isBlank()) {
+            // Se algum dos campos forem vazios...
+            if(txtCpf.getText().isBlank() || txtSenha.getText().isBlank()) {
                 JOptionPane.showMessageDialog(rootPane, "Preencha todos os campos!");
             } else {
                 // obtem os valores dos inputs
-                double matri = Double.parseDouble(txtMatricula.getText());
+                String cpf = txtCpf.getText();
                 char[] pass = txtSenha.getPassword();
+                
+                // Varrendo array usuarios
+                for(Usuario user : db.getUsuarios()) {
+//                    Usuario user = db.getUsuarios().get(x);
 
-                for(int x = 0; x < db.getUsuarios().size(); x++) {
-                    Usuario item = db.getUsuarios().get(x);
-
-                    // Verifica se matricula e senha são iguais
-                    if(matri == item.getMatricula() && Arrays.equals(pass, item.getSenha())) {
-                        JOptionPane.showMessageDialog(rootPane, "Bem vindo " + item.getNome() + "!");
-                        Usuario usuarioLogado = new Usuario(item.getNome(), item.getMatricula(), item.getCargo(), item.getSenha());
+                    // Verifica se cpf e senha são iguais
+                    if(cpf.equals(user.getCpf()) && Arrays.equals(pass, user.getSenha())) {
+                        JOptionPane.showMessageDialog(rootPane, "Bem vindo " + user.getNome() + "!");
+                        Usuario usuarioLogado = new Usuario(user.getNome(), user.getCpf(), user.getMatricula(), user.getCargo(), user.getSenha());
                         db.setUsuarioLogado(usuarioLogado);
                         break;
                     }
 
-                    // Verifica se existe matricula e se senha está errada
-                    if(matri == item.getMatricula() && !Arrays.equals(pass, item.getSenha())) {
-                        JOptionPane.showMessageDialog(rootPane, "Senha incorreta ou usuário não existe!");
+                    // Verifica se existe cpf e se senha está errada, Se não se usuário não existe.
+                    if(cpf.equals(user.getCpf()) && !Arrays.equals(pass, user.getSenha())) {
+                        JOptionPane.showMessageDialog(rootPane, "Usuário ou Senha incorreta!");
+                    } else if (!cpf.equals(user.getCpf())) {
+                        JOptionPane.showMessageDialog(rootPane, "Usuário não existe!");
                     }
                 }
 
-                // Mostra o usuário logado, apenas para testes!!
-                if(db.getUsuarioLogado().getID() != null) {
-                    JOptionPane.showMessageDialog(null, db.getUsuarioLogado());
+                // Mostra a tela referente ao cargo do usuário.
+                if(db.getUsuarioLogado().getCargo().equals("Coordenador")) {
+                    Coordenador coord = new Coordenador();
+                    TelaLogin.removeAll();
+                    TelaLogin.add(coord.getContentPane());
+                    TelaLogin.repaint();
                 }
             }
         } catch(NullPointerException e) {
@@ -165,7 +176,6 @@ public class Login extends javax.swing.JFrame {
         Cadastro cad = new Cadastro();
         TelaLogin.removeAll();
         TelaLogin.add(cad.getContentPane());
-        TelaLogin.setLocation(0, 0);
         TelaLogin.repaint();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
@@ -213,10 +223,10 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnEntrar;
     private javax.swing.JButton btnSair;
-    private javax.swing.JLabel lbMatricula;
+    private javax.swing.JLabel lbCpf;
     private javax.swing.JLabel lbNomeApp;
     private javax.swing.JLabel lbSenha;
-    private javax.swing.JTextField txtMatricula;
+    private javax.swing.JTextField txtCpf;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 }

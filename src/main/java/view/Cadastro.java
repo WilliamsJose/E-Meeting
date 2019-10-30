@@ -49,14 +49,20 @@ public class Cadastro extends javax.swing.JFrame {
         btnCadastrar = new javax.swing.JButton();
         btnEntrar = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
+        lbCpf = new javax.swing.JLabel();
+        txtCpf = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
+        TelaCadastro.setAlignmentX(0.0F);
+        TelaCadastro.setAlignmentY(0.0F);
+        TelaCadastro.setPreferredSize(new java.awt.Dimension(720, 460));
+
         lbNomeApp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbNomeApp.setText("E-Meeting");
 
-        lbNome.setText("Usuário:");
+        lbNome.setText("Nome:");
 
         lbMatricula.setText("Matrícula:");
 
@@ -96,30 +102,12 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
+        lbCpf.setText("CPF:");
+
         javax.swing.GroupLayout TelaCadastroLayout = new javax.swing.GroupLayout(TelaCadastro);
         TelaCadastro.setLayout(TelaCadastroLayout);
         TelaCadastroLayout.setHorizontalGroup(
             TelaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TelaCadastroLayout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addGroup(TelaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbConfirmaSenha)
-                    .addComponent(lbSenha)
-                    .addComponent(lbCargo)
-                    .addComponent(lbMatricula)
-                    .addComponent(lbNome))
-                .addGap(18, 18, 18)
-                .addGroup(TelaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txtMatricula, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCargo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtNome)
-                    .addComponent(txtSenha)
-                    .addComponent(txtConfirmaSenha)
-                    .addGroup(TelaCadastroLayout.createSequentialGroup()
-                        .addComponent(btnEntrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
-                        .addComponent(btnCadastrar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TelaCadastroLayout.createSequentialGroup()
                 .addContainerGap(259, Short.MAX_VALUE)
                 .addGroup(TelaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,16 +117,42 @@ public class Cadastro extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TelaCadastroLayout.createSequentialGroup()
                         .addComponent(btnSair)
                         .addContainerGap())))
+            .addGroup(TelaCadastroLayout.createSequentialGroup()
+                .addGap(104, 104, 104)
+                .addGroup(TelaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbSenha)
+                    .addComponent(lbCpf)
+                    .addComponent(lbConfirmaSenha)
+                    .addComponent(lbCargo)
+                    .addComponent(lbMatricula)
+                    .addComponent(lbNome))
+                .addGap(18, 18, 18)
+                .addGroup(TelaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtMatricula)
+                    .addComponent(txtCargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtNome, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TelaCadastroLayout.createSequentialGroup()
+                        .addComponent(btnEntrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                        .addComponent(btnCadastrar))
+                    .addComponent(txtCpf, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtSenha)
+                    .addComponent(txtConfirmaSenha))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         TelaCadastroLayout.setVerticalGroup(
             TelaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TelaCadastroLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbNomeApp, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addGap(39, 39, 39)
                 .addGroup(TelaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbNome)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(TelaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbCpf)
+                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(TelaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbMatricula)
@@ -157,9 +171,9 @@ public class Cadastro extends javax.swing.JFrame {
                     .addComponent(txtConfirmaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(TelaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCadastrar)
-                    .addComponent(btnEntrar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                    .addComponent(btnEntrar)
+                    .addComponent(btnCadastrar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(btnSair)
                 .addContainerGap())
         );
@@ -183,40 +197,40 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCargoActionPerformed
 
     private void limpaCampos() {
-        txtCargo.setSelectedIndex(0);
         txtNome.setText(null);
+        txtCpf.setText(null);
+        txtMatricula.setText(null);
+        txtCargo.setSelectedIndex(0);
         txtSenha.setText(null);
         txtConfirmaSenha.setText(null);
-        txtMatricula.setText(null);
     }
     
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         
         // obtem os valores dos campos
-        String n = txtNome.getText(),m = txtMatricula.getText(), c = txtCargo.getSelectedItem().toString();
-        char[] s = txtSenha.getPassword(), cs = txtConfirmaSenha.getPassword();
+        String nome = txtNome.getText(), cpf = txtCpf.getText(), matricula = txtMatricula.getText(), cargo = txtCargo.getSelectedItem().toString();
+        char[] senha = txtSenha.getPassword(), confirmaSenha = txtConfirmaSenha.getPassword();
         
-        
-        // Verifica se os campos não estão brancos ou somente com espaço
-        if(!n.isBlank() && !m.isBlank() && !c.isBlank() && !s.toString().isBlank() && !cs.toString().isBlank()) {
-            double matri = Double.parseDouble(m);
+        // Verifica se os campos não estão vazios
+        if(!nome.isBlank() && !cpf.isBlank() && !matricula.isBlank() && !cargo.isBlank() && senha.length != 0 && confirmaSenha.length != 0) {
+            double dMatricula = Double.parseDouble(matricula);
             
             // verifica se as senhas são iguais
-            if(Arrays.equals(s, cs)) {
+            if(Arrays.equals(senha, confirmaSenha)) {
                 
-                // Conta quantas matriculas iguais a digitada existem
-                for(Usuario el : db.getUsuarios()) {
-                    if(el.getMatricula() == matri) {
+                // Conta quantos cpfs iguais ao digitado existem
+                for(Usuario user : db.getUsuarios()) {
+                    if(user.getCpf().equals(cpf)) {
                         ocorrencias += 1;
                     }
                 } 
                 
-                // Se houver mais de uma ocorrencia de matricula registrada, informa ao usuario.
+                // Se houver uma ocorrencia de cpf registrado, informa ao usuario. Caso contrário registra.
                 if(ocorrencias > 0) {
-                    JOptionPane.showMessageDialog(rootPane, "Já existe um usuário com essa matrícula!");
+                    JOptionPane.showMessageDialog(rootPane, "Já existe um usuário com esse CPF!");
                     ocorrencias = 0;
                 } else {
-                    Usuario usuario = new Usuario(n, matri, c, cs);
+                    Usuario usuario = new Usuario(nome, cpf, dMatricula, cargo, confirmaSenha);
                     db.addUsuario(usuario);
                     limpaCampos();
 
@@ -241,7 +255,6 @@ public class Cadastro extends javax.swing.JFrame {
         Login log = new Login();
         TelaCadastro.removeAll();
         TelaCadastro.add(log.getContentPane());
-        TelaCadastro.setLocation(0, 0);
         TelaCadastro.repaint();
     }//GEN-LAST:event_btnEntrarActionPerformed
 
@@ -291,12 +304,14 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JButton btnSair;
     private javax.swing.JLabel lbCargo;
     private javax.swing.JLabel lbConfirmaSenha;
+    private javax.swing.JLabel lbCpf;
     private javax.swing.JLabel lbMatricula;
     private javax.swing.JLabel lbNome;
     private javax.swing.JLabel lbNomeApp;
     private javax.swing.JLabel lbSenha;
     private javax.swing.JComboBox<String> txtCargo;
     private javax.swing.JPasswordField txtConfirmaSenha;
+    private javax.swing.JTextField txtCpf;
     private javax.swing.JTextField txtMatricula;
     private javax.swing.JTextField txtNome;
     private javax.swing.JPasswordField txtSenha;

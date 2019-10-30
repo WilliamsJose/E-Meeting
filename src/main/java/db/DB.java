@@ -8,7 +8,6 @@ import model.Usuario;
  * @author Williams
  */
 public class DB {
-    // mudar para private ou protected, mas como?
     private static ArrayList<Usuario> usuarios = new ArrayList();
     private Usuario usuarioLogado;
 

@@ -27,22 +27,60 @@ public class Coordenador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Tela = new javax.swing.JPanel();
+        jMenuBar = new javax.swing.JMenuBar();
+        jMenu = new javax.swing.JMenu();
+        itemCriarReuniao = new javax.swing.JMenuItem();
+        itemEditarAtas = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+
+        javax.swing.GroupLayout TelaLayout = new javax.swing.GroupLayout(Tela);
+        Tela.setLayout(TelaLayout);
+        TelaLayout.setHorizontalGroup(
+            TelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 800, Short.MAX_VALUE)
+        );
+        TelaLayout.setVerticalGroup(
+            TelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 477, Short.MAX_VALUE)
+        );
+
+        jMenu.setText("Menu");
+
+        itemCriarReuniao.setText("Criar Reunião");
+        jMenu.add(itemCriarReuniao);
+
+        itemEditarAtas.setText("Editar Atas");
+        itemEditarAtas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemEditarAtasActionPerformed(evt);
+            }
+        });
+        jMenu.add(itemEditarAtas);
+
+        jMenuBar.add(jMenu);
+
+        setJMenuBar(jMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addComponent(Tela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 460, Short.MAX_VALUE)
+            .addComponent(Tela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void itemEditarAtasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEditarAtasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemEditarAtasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -83,5 +121,10 @@ public class Coordenador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Tela;
+    private javax.swing.JMenuItem itemCriarReuniao;
+    private javax.swing.JMenuItem itemEditarAtas;
+    private javax.swing.JMenu jMenu;
+    private javax.swing.JMenuBar jMenuBar;
     // End of variables declaration//GEN-END:variables
 }

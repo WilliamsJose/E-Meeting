@@ -1,35 +1,45 @@
 package model;
-import java.util.UUID;
 /**
  *
  * @author Williams
  */
 public class Usuario {
-    private final UUID ID;
     private String nome;
     private String cpf;
-    private double matricula;
-    private String cargo;
+    private int matricula;
+    private int telefone;
     private char[] senha;
-
-    @Override
+    private final String permission = "Comum";
+    
     public String toString() {
         return "Usuario{ " + 
-                "\n ID=" + this.ID +
                 "\n nome=" + this.nome + 
                 "\n CPF=" + this.cpf + 
-                "\n matricula=" + this.matricula + 
-                "\n cargo=" + this.cargo + 
+                "\n matricula=" + this.matricula +
                 "\n senha=" + this.senha + "\n}";
     }
 
-    public Usuario(String nome, String cpf, double matricula, String cargo, char[] senha) {
-        this.ID = UUID.randomUUID();
+    public Usuario(String nome, String cpf, int matricula, int telefone, char[] senha) {
         this.nome = nome;
         this.cpf = cpf;
         this.matricula = matricula;
-        this.cargo = cargo;
+        this.telefone = telefone;
         this.senha = senha;
+    }
+    
+    public Usuario(){}
+
+    //<editor-fold defaultstate="collapsed" desc="Getters and Setters">
+    public String getPermission() {
+        return permission;
+    }
+
+    public int getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(int telefone) {
+        this.telefone = telefone;
     }
 
     public String getCpf() {
@@ -40,10 +50,6 @@ public class Usuario {
         this.cpf = cpf;
     }
     
-    public UUID getID() {
-        return ID;
-    }
-    
     public String getNome() {
         return nome;
     }
@@ -52,29 +58,20 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public double getMatricula() {
+    public int getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(double matricula) {
+    public void setMatricula(int matricula) {
         this.matricula = matricula;
     }
-
-    public String getCargo() {
-        return cargo;
-    }
-
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
-
+    
     public char[] getSenha() {
         return senha;
     }
 
     public void setSenha(char[] senha) {
         this.senha = senha;
-    }
-    
-    
+    }    
+    //</editor-fold>
 }

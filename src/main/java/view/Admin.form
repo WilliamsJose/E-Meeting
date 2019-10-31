@@ -9,17 +9,25 @@
             <Property name="text" type="java.lang.String" value="Menu"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="itemCriarReuniao">
+            <MenuItem class="javax.swing.JMenuItem" name="itemCadCoordenador">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Criar Reuni&#xe3;o"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="itemEditarAtas">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Editar Atas"/>
+                <Property name="text" type="java.lang.String" value="Cadastrar Coordenador"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemEditarAtasActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemCadCoordenadorActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="itemCadGestorDeRecursos">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cadastrar Gestor de Recursos"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="itemCadUsuarioComum">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cadastrar Usu&#xe1;rio Comum"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemCadUsuarioComumActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -29,7 +37,6 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar"/>
@@ -51,17 +58,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="Tela" alignment="0" max="32767" attributes="0"/>
+          <Component id="TelaAdmin" alignment="0" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="Tela" alignment="0" max="32767" attributes="0"/>
+          <Component id="TelaAdmin" alignment="1" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="Tela">
+    <Container class="javax.swing.JPanel" name="TelaAdmin">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -69,7 +76,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="719" max="32767" attributes="0"/>
+                  <EmptySpace pref="757" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -86,7 +93,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Coordenador"/>
+            <Property name="text" type="java.lang.String" value="Admin"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>

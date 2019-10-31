@@ -99,9 +99,9 @@ public class CadastroComum extends javax.swing.JFrame {
         TelaCadastroLayout.setVerticalGroup(
             TelaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TelaCadastroLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(46, 46, 46)
                 .addComponent(lbNomeApp, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
+                .addGap(18, 18, 18)
                 .addGroup(TelaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbNome)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -154,7 +154,7 @@ public class CadastroComum extends javax.swing.JFrame {
         txtConfirmaSenha.setText(null);
     }// </editor-fold>
     
-    //<editor-fold defaultstate="collapsed" desc="Método Entrar">
+    //<editor-fold defaultstate="collapsed" desc="Método Cadastrar">
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         
         // obtem os valores dos campos
@@ -172,9 +172,7 @@ public class CadastroComum extends javax.swing.JFrame {
                 
                 // Conta quantos cpfs iguais ao digitado existem no banco, ou nome, ou se digitou usuario restrito.
                 for(Usuario user : db.getUsuarios()) {
-                    if(cpf.equals(user.getCpf())) {
-                        jaExiste += 1;
-                    } else if(nome.equals(user.getNome())) {
+                    if(cpf.equals(user.getCpf()) || nome.equals(user.getNome())) {
                         jaExiste += 1;
                     }
                 } 
@@ -212,6 +210,7 @@ public class CadastroComum extends javax.swing.JFrame {
         TelaCadastro.removeAll();
         TelaCadastro.add(l.getContentPane());
         TelaCadastro.repaint();
+        l.dispose();
     }//</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Generated Code">

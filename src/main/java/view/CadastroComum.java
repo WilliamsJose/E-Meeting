@@ -10,7 +10,7 @@ import db.DB;
  * @author Williams
  */
 public class CadastroComum extends javax.swing.JFrame {
-    int jaExiste;
+    int jaExiste = 0;
     DB db = new DB();
     
     public CadastroComum() {
@@ -172,7 +172,9 @@ public class CadastroComum extends javax.swing.JFrame {
                 
                 // Conta quantos cpfs iguais ao digitado existem no banco, ou nome, ou se digitou usuario restrito.
                 for(Usuario user : db.getUsuarios()) {
-                    if(user.getCpf().equals(cpf) || user.getNome().equals(nome)) {
+                    if(cpf.equals(user.getCpf())) {
+                        jaExiste += 1;
+                    } else if(nome.equals(user.getNome())) {
                         jaExiste += 1;
                     }
                 } 

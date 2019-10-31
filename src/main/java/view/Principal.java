@@ -18,8 +18,8 @@ public class Principal extends javax.swing.JFrame {
 
         TelaPrincipal = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        itemEntrar = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        botaoMenu = new javax.swing.JMenu();
+        itemEntrar = new javax.swing.JMenuItem();
         itemCadastrar = new javax.swing.JMenuItem();
         itemSair = new javax.swing.JMenuItem();
 
@@ -36,15 +36,15 @@ public class Principal extends javax.swing.JFrame {
             .addGap(0, 477, Short.MAX_VALUE)
         );
 
-        itemEntrar.setText("Menu");
+        botaoMenu.setText("Menu");
 
-        jMenuItem1.setText("Entrar");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        itemEntrar.setText("Entrar");
+        itemEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                itemEntrarActionPerformed(evt);
             }
         });
-        itemEntrar.add(jMenuItem1);
+        botaoMenu.add(itemEntrar);
 
         itemCadastrar.setText("Cadastrar");
         itemCadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -52,7 +52,7 @@ public class Principal extends javax.swing.JFrame {
                 itemCadastrarActionPerformed(evt);
             }
         });
-        itemEntrar.add(itemCadastrar);
+        botaoMenu.add(itemCadastrar);
 
         itemSair.setText("Sair");
         itemSair.addActionListener(new java.awt.event.ActionListener() {
@@ -60,9 +60,9 @@ public class Principal extends javax.swing.JFrame {
                 itemSairActionPerformed(evt);
             }
         });
-        itemEntrar.add(itemSair);
+        botaoMenu.add(itemSair);
 
-        jMenuBar1.add(itemEntrar);
+        jMenuBar1.add(botaoMenu);
 
         setJMenuBar(jMenuBar1);
 
@@ -80,12 +80,12 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void itemEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEntrarActionPerformed
         Login l = new Login();
         TelaPrincipal.removeAll();
         TelaPrincipal.add(l.getContentPane());
         TelaPrincipal.repaint();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_itemEntrarActionPerformed
 
     private void itemCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadastrarActionPerformed
         CadastroComum cad = new CadastroComum();
@@ -133,11 +133,11 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel TelaPrincipal;
+    private javax.swing.JMenu botaoMenu;
     private javax.swing.JMenuItem itemCadastrar;
-    private javax.swing.JMenu itemEntrar;
+    private javax.swing.JMenuItem itemEntrar;
     private javax.swing.JMenuItem itemSair;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
     //</editor-fold>
 }

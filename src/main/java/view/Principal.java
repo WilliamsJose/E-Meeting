@@ -134,10 +134,6 @@ public class Principal extends javax.swing.JFrame {
         });
     }
     
-    public void chamaLogin() {
-        this.itemEntrarActionPerformed(null);
-    }
-    
     public void disposeAll() {
         this.dispose();
         l.dispose();

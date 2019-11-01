@@ -185,11 +185,7 @@ public class CadastroComum extends javax.swing.JFrame {
                     Usuario usuario = new Usuario(nome, cpf, dMatricula, telefone, confirmaSenha);
                     db.addUsuario(usuario);
                     limpaCampos();
-
-                    
-                    
                     JOptionPane.showMessageDialog(rootPane,"Cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                    
                 }
                 
             } else {

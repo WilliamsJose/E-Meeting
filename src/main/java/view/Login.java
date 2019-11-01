@@ -168,7 +168,6 @@ public class Login extends javax.swing.JFrame {
                         break;
                 }
             }
-            return;
         } catch(NullPointerException e) {
             JOptionPane.showMessageDialog(rootPane, "Erro: " + e.getMessage() + "\nBanco de dados: " + db.getUsuarios());
         }

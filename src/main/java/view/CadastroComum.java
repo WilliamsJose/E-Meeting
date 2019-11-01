@@ -186,12 +186,10 @@ public class CadastroComum extends javax.swing.JFrame {
                     db.addUsuario(usuario);
                     limpaCampos();
 
-                    // Pergunta ao usuario se ele quer fazer login, se sim redireciona para o login.
-                    Object[] opcoes = {"Sim", "Não"};
-                    int opcao = JOptionPane.showOptionDialog(this.btnCadastrar, "Cadastrado com sucesso! Deseja fazer login?", "Sucesso", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, EXIT_ON_CLOSE);
-                    if(opcao == 0) {
-                        chamaTelaEntrar();
-                    }
+                    
+                    
+                    JOptionPane.showMessageDialog(rootPane,"Cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    
                 }
                 
             } else {
@@ -203,15 +201,6 @@ public class CadastroComum extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnCadastrarActionPerformed
     //</editor-fold>
-    
-    //<editor-fold defaultstate="collapsed" desc="Método chama Tela de Login">
-    private void chamaTelaEntrar() {
-        Login l = new Login();
-        TelaCadastro.removeAll();
-        TelaCadastro.add(l.getContentPane());
-        TelaCadastro.repaint();
-        l.dispose();
-    }//</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Generated Code">
     public static void main(String args[]) {

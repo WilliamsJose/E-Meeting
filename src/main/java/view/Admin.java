@@ -84,14 +84,14 @@ public class Admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemCadCoordenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadCoordenadorActionPerformed
-        CadastroCoordenador co = new CadastroCoordenador();
+        ContentCadastroCoordenador co = new ContentCadastroCoordenador();
         TelaAdmin.removeAll();
         TelaAdmin.add(co.getContentPane());
         TelaAdmin.repaint();
     }//GEN-LAST:event_itemCadCoordenadorActionPerformed
 
     private void itemCadUsuarioComumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadUsuarioComumActionPerformed
-        CadastroComum cc = new CadastroComum();
+        ContentCadastroComum cc = new ContentCadastroComum();
         TelaAdmin.removeAll();
         TelaAdmin.add(cc.getContentPane());
         TelaAdmin.repaint();

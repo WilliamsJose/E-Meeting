@@ -5,8 +5,8 @@ package view;
  * @author Williams
  */
 public class Principal extends javax.swing.JFrame {
-    CadastroComum c = new CadastroComum();
-    Login l = new Login(this);
+    ContentCadastroComum c = new ContentCadastroComum();
+    ContentLogin l = new ContentLogin(this);
 
     public Principal() {
         initComponents();

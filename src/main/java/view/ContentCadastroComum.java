@@ -9,11 +9,11 @@ import db.DB;
  *
  * @author Williams
  */
-public class CadastroComum extends javax.swing.JFrame {
+public class ContentCadastroComum extends javax.swing.JFrame {
     int jaExiste = 0;
     DB db = new DB();
     
-    public CadastroComum() {
+    public ContentCadastroComum() {
         initComponents();
     }
 
@@ -127,7 +127,7 @@ public class CadastroComum extends javax.swing.JFrame {
                     .addComponent(txtConfirmaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnCadastrar)
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -138,7 +138,7 @@ public class CadastroComum extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TelaCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(TelaCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
         );
 
         pack();
@@ -157,28 +157,24 @@ public class CadastroComum extends javax.swing.JFrame {
     //<editor-fold defaultstate="collapsed" desc="Método Cadastrar">
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         
-        // obtem os valores dos campos
         String nome = txtNome.getText(), cpf = txtCpf.getText(), matricula = txtMatricula.getText();
         String tel = txtTelefone.getText();
         char[] senha = txtSenha.getPassword(), confirmaSenha = txtConfirmaSenha.getPassword();
         
-        // Verifica se os campos não estão vazios
+        // Verificação para cadastro
         if(!nome.isBlank() && !cpf.isBlank() && !matricula.isBlank() && !tel.isBlank() && senha.length != 0 && confirmaSenha.length != 0) {
-            // Converte os valores para armazenamento
             int dMatricula = Integer.parseInt(matricula), telefone = Integer.parseInt(tel);
             
-            // verifica se as senhas são iguais
             if(Arrays.equals(senha, confirmaSenha)) {
                 
-                // Conta quantos cpfs iguais ao digitado existem no banco, ou nome, ou se digitou usuario restrito.
                 for(Usuario user : db.getUsuarios()) {
                     if(cpf.equals(user.getCpf()) || nome.equals(user.getNome())) {
-                        jaExiste += 1;
+                        jaExiste = 1;
+                        break;
                     }
-                } 
+                }
                 
-                // Se houver ao menos uma ocorrencia de nome ou cpf registrado, informa ao usuario. Caso contrário registra.
-                if(jaExiste > 0) {
+                if(jaExiste != 0) {
                     JOptionPane.showMessageDialog(rootPane, "Já existe um usuário com esse Nome ou CPF");
                     jaExiste = 0;
                 } else {
@@ -189,7 +185,7 @@ public class CadastroComum extends javax.swing.JFrame {
                 }
                 
             } else {
-                JOptionPane.showMessageDialog(null, "Senhas devem ser iguais!");
+                JOptionPane.showMessageDialog(null, "As Senhas devem ser iguais!");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Você deve preencher todos os campos!");
@@ -213,20 +209,21 @@ public class CadastroComum extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroComum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ContentCadastroComum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroComum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ContentCadastroComum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroComum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ContentCadastroComum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroComum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ContentCadastroComum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroComum().setVisible(true);
+                new ContentCadastroComum().setVisible(true);
             }
         });
     }

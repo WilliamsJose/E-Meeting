@@ -5,7 +5,8 @@ package view;
  * @author Williams
  */
 public class Comum extends javax.swing.JFrame {
-
+    ContentCriarReuniao reuniao = new ContentCriarReuniao();
+    
     public Comum() {
         initComponents();
     }
@@ -14,17 +15,43 @@ public class Comum extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        TelaComum = new javax.swing.JPanel();
         jMenuBar = new javax.swing.JMenuBar();
         jMenu = new javax.swing.JMenu();
         itemCriarReuniao = new javax.swing.JMenuItem();
+        itemSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
+        javax.swing.GroupLayout TelaComumLayout = new javax.swing.GroupLayout(TelaComum);
+        TelaComum.setLayout(TelaComumLayout);
+        TelaComumLayout.setHorizontalGroup(
+            TelaComumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 800, Short.MAX_VALUE)
+        );
+        TelaComumLayout.setVerticalGroup(
+            TelaComumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 477, Short.MAX_VALUE)
+        );
+
         jMenu.setText("Menu");
 
         itemCriarReuniao.setText("Criar Reunião");
+        itemCriarReuniao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCriarReuniaoActionPerformed(evt);
+            }
+        });
         jMenu.add(itemCriarReuniao);
+
+        itemSair.setText("Sair");
+        itemSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemSairActionPerformed(evt);
+            }
+        });
+        jMenu.add(itemSair);
 
         jMenuBar.add(jMenu);
 
@@ -34,15 +61,25 @@ public class Comum extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addComponent(TelaComum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 437, Short.MAX_VALUE)
+            .addComponent(TelaComum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void itemCriarReuniaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCriarReuniaoActionPerformed
+        TelaComum.removeAll();
+        TelaComum.add(reuniao.getContentPane());
+        TelaComum.repaint();
+    }//GEN-LAST:event_itemCriarReuniaoActionPerformed
+
+    private void itemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSairActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_itemSairActionPerformed
 
     //<editor-fold defaultstate="collapsed" desc="Generated Code">
     public static void main(String args[]) {
@@ -78,7 +115,9 @@ public class Comum extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel TelaComum;
     private javax.swing.JMenuItem itemCriarReuniao;
+    private javax.swing.JMenuItem itemSair;
     private javax.swing.JMenu jMenu;
     private javax.swing.JMenuBar jMenuBar;
     // End of variables declaration//GEN-END:variables

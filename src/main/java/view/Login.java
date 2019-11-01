@@ -11,9 +11,15 @@ import java.util.Arrays;
  */
 public class Login extends javax.swing.JFrame {
     DB db = new DB();
+    Principal p;
     
     public Login() {
         initComponents();
+    }
+    
+    public Login(Principal p){
+        initComponents();
+        this.p = p;
     }
 
     @SuppressWarnings("unchecked")
@@ -27,11 +33,6 @@ public class Login extends javax.swing.JFrame {
         lbSenha = new javax.swing.JLabel();
         txtSenha = new javax.swing.JPasswordField();
         btnEntrar = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        botaoMenu = new javax.swing.JMenu();
-        itemEntrar = new javax.swing.JMenuItem();
-        itemCadastrar = new javax.swing.JMenuItem();
-        itemSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -88,38 +89,8 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnEntrar)
-                .addContainerGap(211, Short.MAX_VALUE))
+                .addContainerGap(234, Short.MAX_VALUE))
         );
-
-        botaoMenu.setText("Menu");
-
-        itemEntrar.setText("Entrar");
-        itemEntrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemEntrarActionPerformed(evt);
-            }
-        });
-        botaoMenu.add(itemEntrar);
-
-        itemCadastrar.setText("Cadastrar");
-        itemCadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemCadastrarActionPerformed(evt);
-            }
-        });
-        botaoMenu.add(itemCadastrar);
-
-        itemSair.setText("Sair");
-        itemSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemSairActionPerformed(evt);
-            }
-        });
-        botaoMenu.add(itemSair);
-
-        jMenuBar1.add(botaoMenu);
-
-        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -140,6 +111,7 @@ public class Login extends javax.swing.JFrame {
         
         // Tratamento de exceção array vazia / não instanciada.
         try {
+            
             // obtem os valores dos inputs
             String nome = txtNome.getText();
             char[] senha = txtSenha.getPassword();
@@ -162,7 +134,7 @@ public class Login extends javax.swing.JFrame {
                     } 
                     
                 }
-                
+                // Caso a cominação não esteja correta, informa ao usuário.
                 if(db.getUsuarioLogado() == null) {
                    JOptionPane.showMessageDialog(rootPane, "Usuário ou Senha incorreta!");
                    return;
@@ -172,52 +144,34 @@ public class Login extends javax.swing.JFrame {
                 switch (db.getUsuarioLogado().getPermission()) {
                     case "Coordenador":
                         Coordenador co = new Coordenador();
-                        this.dispose();
+                        p.disposeAll();
                         co.setVisible(true);
                         co.setLocationRelativeTo(null);
                         break;
                     case "GestorDeRecursos":
                         Gestor g = new Gestor();
-                        this.dispose();
+                        p.disposeAll();
                         g.setVisible(true);
                         g.setLocationRelativeTo(null);
                         break;
                     case "Admin":
                         Admin a = new Admin();
-                        this.dispose();
+                        p.disposeAll();
                         a.setVisible(true);
                         a.setLocationRelativeTo(null);
                         break;
                     default:
                         Comum c = new Comum();
-                        this.dispose();
+                        p.disposeAll();
                         c.setVisible(true);
                         c.setLocationRelativeTo(null);
                         break;
                 }
             }
         } catch(NullPointerException e) {
-            JOptionPane.showMessageDialog(rootPane, "Erro: " + e + "\nBanco de dados vazio.");
+            JOptionPane.showMessageDialog(rootPane, "Erro: " + e.getMessage() + "\nBanco de dados: " + db.getUsuarios());
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
-
-    private void itemEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEntrarActionPerformed
-        Login l = new Login();
-        TelaLogin.removeAll();
-        TelaLogin.add(l.getContentPane());
-        TelaLogin.repaint();
-    }//GEN-LAST:event_itemEntrarActionPerformed
-
-    private void itemCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadastrarActionPerformed
-        CadastroComum cad = new CadastroComum();
-        TelaLogin.removeAll();
-        TelaLogin.add(cad.getContentPane());
-        TelaLogin.repaint();
-    }//GEN-LAST:event_itemCadastrarActionPerformed
-
-    private void itemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSairActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_itemSairActionPerformed
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Generated Code">
@@ -255,12 +209,7 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel TelaLogin;
-    private javax.swing.JMenu botaoMenu;
     private javax.swing.JButton btnEntrar;
-    private javax.swing.JMenuItem itemCadastrar;
-    private javax.swing.JMenuItem itemEntrar;
-    private javax.swing.JMenuItem itemSair;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lbNome;
     private javax.swing.JLabel lbNomeApp;
     private javax.swing.JLabel lbSenha;

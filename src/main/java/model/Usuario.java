@@ -26,6 +26,12 @@ public class Usuario {
         this.telefone = telefone;
         this.senha = senha;
     }
+
+    public Usuario(String nome, String cpf, char[] senha) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.senha = senha;
+    }
     
     public Usuario(){}
 

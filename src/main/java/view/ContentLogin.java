@@ -154,12 +154,6 @@ public class ContentLogin extends javax.swing.JFrame {
                         g.setVisible(true);
                         g.setLocationRelativeTo(null);
                         break;
-                    case "Admin":
-                        Admin a = new Admin();
-                        p.disposeAll();
-                        a.setVisible(true);
-                        a.setLocationRelativeTo(null);
-                        break;
                     default:
                         Comum c = new Comum();
                         p.disposeAll();
@@ -169,7 +163,7 @@ public class ContentLogin extends javax.swing.JFrame {
                 }
             }
         } catch(NullPointerException e) {
-            JOptionPane.showMessageDialog(rootPane, "Erro: " + e.getMessage() + "\nBanco de dados: " + db.getUsuarios());
+            JOptionPane.showMessageDialog(rootPane, "Erro: " + e.getMessage());
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
     //</editor-fold>
@@ -198,7 +192,7 @@ public class ContentLogin extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ContentLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -207,7 +201,9 @@ public class ContentLogin extends javax.swing.JFrame {
             }
         });
     }
+    //</editor-fold>
 
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel TelaLogin;
     private javax.swing.JButton btnEntrar;

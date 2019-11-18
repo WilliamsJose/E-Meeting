@@ -7,8 +7,9 @@ package model;
 public class GestorDeRecursos extends Usuario {
     private String setor;
     private final String permission = "GestorDeRecursos";
-    
-    public GestorDeRecursos(String setor) {
+  
+    public GestorDeRecursos(String setor, String nome, String cpf, char[] senha) {
+        super(nome, cpf, senha);
         this.setor = setor;
     }
 

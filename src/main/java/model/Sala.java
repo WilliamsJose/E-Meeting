@@ -5,8 +5,8 @@ package model;
  * @author Williams
  */
 public class Sala {
-    String sala;
-    String status;
+    private String sala;
+    private String status;
 
     public Sala(String sala, String status) {
         this.sala = sala;

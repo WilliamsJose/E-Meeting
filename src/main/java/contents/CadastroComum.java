@@ -1,4 +1,4 @@
-package view;
+package contents;
 
 import java.util.Arrays;
 import javax.swing.JOptionPane;
@@ -9,11 +9,11 @@ import db.DB;
  *
  * @author Williams
  */
-public class ContentCadastroComum extends javax.swing.JFrame {
+public class CadastroComum extends javax.swing.JFrame {
     int jaExiste = 0;
     DB db = new DB();
     
-    public ContentCadastroComum() {
+    public CadastroComum() {
         initComponents();
     }
 
@@ -36,6 +36,8 @@ public class ContentCadastroComum extends javax.swing.JFrame {
         lbCpf = new javax.swing.JLabel();
         txtCpf = new javax.swing.JTextField();
         txtTelefone = new javax.swing.JTextField();
+        lbUsuario = new javax.swing.JLabel();
+        txtUsuario = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -68,37 +70,46 @@ public class ContentCadastroComum extends javax.swing.JFrame {
 
         lbCpf.setText("CPF:");
 
+        lbUsuario.setText("Usuário:");
+
         javax.swing.GroupLayout TelaCadastroLayout = new javax.swing.GroupLayout(TelaCadastro);
         TelaCadastro.setLayout(TelaCadastroLayout);
         TelaCadastroLayout.setHorizontalGroup(
             TelaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TelaCadastroLayout.createSequentialGroup()
-                .addGap(153, 153, 153)
-                .addGroup(TelaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbSenha)
-                    .addComponent(lbCpf)
-                    .addComponent(lbConfirmaSenha)
-                    .addComponent(lbTelefone)
-                    .addComponent(lbMatricula)
-                    .addComponent(lbNome))
-                .addGap(18, 18, 18)
-                .addGroup(TelaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtMatricula)
-                    .addComponent(txtNome, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnCadastrar, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtCpf, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtSenha)
-                    .addComponent(txtConfirmaSenha)
-                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TelaCadastroLayout.createSequentialGroup()
                 .addContainerGap(296, Short.MAX_VALUE)
                 .addComponent(lbNomeApp, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(289, 289, 289))
+            .addGroup(TelaCadastroLayout.createSequentialGroup()
+                .addGroup(TelaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(TelaCadastroLayout.createSequentialGroup()
+                        .addGap(210, 210, 210)
+                        .addGroup(TelaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbNome)
+                            .addComponent(lbUsuario)
+                            .addComponent(lbCpf)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TelaCadastroLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(TelaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbMatricula, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbTelefone, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbSenha, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbConfirmaSenha, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addGap(18, 18, 18)
+                .addGroup(TelaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtMatricula)
+                    .addComponent(btnCadastrar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtCpf, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtSenha)
+                    .addComponent(txtConfirmaSenha)
+                    .addComponent(txtTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                    .addComponent(txtUsuario)
+                    .addComponent(txtNome))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         TelaCadastroLayout.setVerticalGroup(
             TelaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TelaCadastroLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TelaCadastroLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(lbNomeApp, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -107,27 +118,31 @@ public class ContentCadastroComum extends javax.swing.JFrame {
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(TelaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbCpf)
-                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbUsuario))
                 .addGap(18, 18, 18)
                 .addGroup(TelaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbMatricula)
-                    .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbCpf))
                 .addGap(18, 18, 18)
                 .addGroup(TelaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbTelefone)
-                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbMatricula))
                 .addGap(18, 18, 18)
                 .addGroup(TelaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbSenha)
-                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbTelefone))
                 .addGap(18, 18, 18)
                 .addGroup(TelaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbConfirmaSenha)
-                    .addComponent(txtConfirmaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbSenha))
+                .addGap(18, 18, 18)
+                .addGroup(TelaCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtConfirmaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbConfirmaSenha))
                 .addGap(18, 18, 18)
                 .addComponent(btnCadastrar)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -147,6 +162,7 @@ public class ContentCadastroComum extends javax.swing.JFrame {
     //<editor-fold defaultstate="collapsed" desc="Limpar Campos dos Inputs">
     private void limpaCampos() {
         txtNome.setText(null);
+        txtUsuario.setText(null);
         txtCpf.setText(null);
         txtMatricula.setText(null);
         txtTelefone.setText(null);
@@ -157,28 +173,28 @@ public class ContentCadastroComum extends javax.swing.JFrame {
     //<editor-fold defaultstate="collapsed" desc="Método Cadastrar">
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         
-        String nome = txtNome.getText(), cpf = txtCpf.getText(), matricula = txtMatricula.getText();
+        String nome = txtNome.getText(), usuariotxt = txtUsuario.getText(), cpf = txtCpf.getText(), matricula = txtMatricula.getText();
         String tel = txtTelefone.getText();
         char[] senha = txtSenha.getPassword(), confirmaSenha = txtConfirmaSenha.getPassword();
         
         // Verificação para cadastro
-        if(!nome.isBlank() && !cpf.isBlank() && !matricula.isBlank() && !tel.isBlank() && senha.length != 0 && confirmaSenha.length != 0) {
+        if(!nome.isEmpty() && !cpf.isEmpty() && !usuariotxt.isEmpty() && !matricula.isEmpty() && !tel.isEmpty() && senha.length != 0 && confirmaSenha.length != 0) {
             int dMatricula = Integer.parseInt(matricula), telefone = Integer.parseInt(tel);
             
             if(Arrays.equals(senha, confirmaSenha)) {
                 
                 for(Usuario user : db.getUsuarios()) {
-                    if(cpf.equals(user.getCpf()) || nome.equals(user.getNome())) {
+                    if(cpf.equals(user.getCpf()) || usuariotxt.equals(user.getUsuario())) {
                         jaExiste = 1;
                         break;
                     }
                 }
                 
                 if(jaExiste != 0) {
-                    JOptionPane.showMessageDialog(rootPane, "Já existe um usuário com esse Nome ou CPF");
+                    JOptionPane.showMessageDialog(rootPane, "Já existe um registro com esse Usuário ou CPF");
                     jaExiste = 0;
                 } else {
-                    Usuario usuario = new Usuario(nome, cpf, dMatricula, telefone, confirmaSenha);
+                    Usuario usuario = new Usuario(nome, usuariotxt, cpf, dMatricula, telefone, confirmaSenha);
                     db.addUsuario(usuario);
                     limpaCampos();
                     JOptionPane.showMessageDialog(rootPane,"Cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
@@ -209,21 +225,23 @@ public class ContentCadastroComum extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ContentCadastroComum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroComum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ContentCadastroComum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroComum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ContentCadastroComum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroComum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ContentCadastroComum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroComum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ContentCadastroComum().setVisible(true);
+                new CadastroComum().setVisible(true);
             }
         });
     }
@@ -239,12 +257,14 @@ public class ContentCadastroComum extends javax.swing.JFrame {
     private javax.swing.JLabel lbNomeApp;
     private javax.swing.JLabel lbSenha;
     private javax.swing.JLabel lbTelefone;
+    private javax.swing.JLabel lbUsuario;
     private javax.swing.JPasswordField txtConfirmaSenha;
     private javax.swing.JTextField txtCpf;
     private javax.swing.JTextField txtMatricula;
     private javax.swing.JTextField txtNome;
     private javax.swing.JPasswordField txtSenha;
     private javax.swing.JTextField txtTelefone;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
     //</editor-fold>
 }

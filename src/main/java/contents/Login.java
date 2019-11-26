@@ -1,23 +1,27 @@
-package view;
+package contents;
 
 import javax.swing.JOptionPane;
 import model.Usuario;
 import db.DB;
 import java.util.Arrays;
+import view.Comum;
+import view.Coordenador;
+import view.Gestor;
+import view.Principal;
 
 /**
  *
  * @author Williams
  */
-public class ContentLogin extends javax.swing.JFrame {
+public class Login extends javax.swing.JFrame {
     DB db = new DB();
     Principal p;
     
-    public ContentLogin() {
+    public Login() {
         initComponents();
     }
     
-    public ContentLogin(Principal p){
+    public Login(Principal p){
         initComponents();
         this.p = p;
     }
@@ -29,7 +33,7 @@ public class ContentLogin extends javax.swing.JFrame {
         TelaLogin = new javax.swing.JPanel();
         lbNomeApp = new javax.swing.JLabel();
         lbNome = new javax.swing.JLabel();
-        txtNome = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
         lbSenha = new javax.swing.JLabel();
         txtSenha = new javax.swing.JPasswordField();
         btnEntrar = new javax.swing.JButton();
@@ -67,7 +71,7 @@ public class ContentLogin extends javax.swing.JFrame {
                 .addGroup(TelaLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEntrar, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 228, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TelaLoginLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -81,7 +85,7 @@ public class ContentLogin extends javax.swing.JFrame {
                 .addComponent(lbNomeApp, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(TelaLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbNome))
                 .addGap(18, 18, 18)
                 .addGroup(TelaLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -113,11 +117,11 @@ public class ContentLogin extends javax.swing.JFrame {
         try {
             
             // obtem os valores dos inputs
-            String nome = txtNome.getText();
+            String usuario = txtUsuario.getText();
             char[] senha = txtSenha.getPassword();
             
             // Se algum dos campos forem vazios...
-            if(nome.isBlank() || senha.length == 0) {
+            if(usuario.isEmpty() || senha.length == 0) {
                 JOptionPane.showMessageDialog(rootPane, "Preencha todos os campos!");
             } else {
                 
@@ -125,7 +129,7 @@ public class ContentLogin extends javax.swing.JFrame {
                 for(Usuario user : db.getUsuarios()) {
 
                     // Verifica se nome e senha são iguais aos do banco
-                    if(nome.equals(user.getNome()) && Arrays.equals(senha, user.getSenha())) {
+                    if(usuario.equals(user.getUsuario()) && Arrays.equals(senha, user.getSenha())) {
                         JOptionPane.showMessageDialog(rootPane, "Bem vindo, " + user.getNome() + "!");
                         db.setUsuarioLogado(user);
                         break;
@@ -183,21 +187,22 @@ public class ContentLogin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ContentLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ContentLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ContentLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ContentLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
         
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ContentLogin().setVisible(true);
+                new Login().setVisible(true);
             }
         });
     }
@@ -210,8 +215,8 @@ public class ContentLogin extends javax.swing.JFrame {
     private javax.swing.JLabel lbNome;
     private javax.swing.JLabel lbNomeApp;
     private javax.swing.JLabel lbSenha;
-    private javax.swing.JTextField txtNome;
     private javax.swing.JPasswordField txtSenha;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
     //</editor-fold>
 }

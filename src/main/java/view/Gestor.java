@@ -1,32 +1,31 @@
 package view;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+import contents.GestorCadNovoEspaco;
+import contents.GestorConfirmarReunioes;
 
 /**
  *
  * @author Williams
  */
 public class Gestor extends javax.swing.JFrame {
+    GestorCadNovoEspaco gcne = new GestorCadNovoEspaco();
+    GestorConfirmarReunioes gcr = new GestorConfirmarReunioes();
     
     public Gestor() {
         initComponents();
+        TelaGestor.add(gcne.getContentPane());
+        jMenu.remove(itemCadNovoEspaco);
     }
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         TelaGestor = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        salasCadastradas = new javax.swing.JTable();
-        btnAdicionarSala = new javax.swing.JButton();
-        txtSala = new javax.swing.JTextField();
-        lbSala = new javax.swing.JLabel();
-        lbStatus = new javax.swing.JLabel();
-        txtStatus = new javax.swing.JTextField();
-        btnRemoverSala = new javax.swing.JButton();
         jMenuBar = new javax.swing.JMenuBar();
         jMenu = new javax.swing.JMenu();
+        itemConfirmarReunioes = new javax.swing.JMenuItem();
         itemCadNovoEspaco = new javax.swing.JMenuItem();
         itemSair = new javax.swing.JMenuItem();
 
@@ -34,87 +33,33 @@ public class Gestor extends javax.swing.JFrame {
         setTitle("Gestor");
         setResizable(false);
 
-        salasCadastradas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Sala", "Status"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(salasCadastradas);
-
-        btnAdicionarSala.setText("Adicionar");
-        btnAdicionarSala.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdicionarSalaActionPerformed(evt);
-            }
-        });
-
-        lbSala.setText("Sala:");
-
-        lbStatus.setText("Status:");
-
-        btnRemoverSala.setText("Remover");
-        btnRemoverSala.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemoverSalaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout TelaGestorLayout = new javax.swing.GroupLayout(TelaGestor);
         TelaGestor.setLayout(TelaGestorLayout);
         TelaGestorLayout.setHorizontalGroup(
             TelaGestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TelaGestorLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(TelaGestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TelaGestorLayout.createSequentialGroup()
-                        .addGroup(TelaGestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSala, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(TelaGestorLayout.createSequentialGroup()
-                                .addComponent(btnAdicionarSala)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnRemoverSala))
-                            .addComponent(lbSala))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                        .addGroup(TelaGestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbStatus)
-                            .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+            .addGap(0, 800, Short.MAX_VALUE)
         );
         TelaGestorLayout.setVerticalGroup(
             TelaGestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TelaGestorLayout.createSequentialGroup()
-                .addContainerGap(77, Short.MAX_VALUE)
-                .addGroup(TelaGestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbSala)
-                    .addComponent(lbStatus))
-                .addGap(18, 18, 18)
-                .addGroup(TelaGestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
-                .addGroup(TelaGestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdicionarSala)
-                    .addComponent(btnRemoverSala))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 477, Short.MAX_VALUE)
         );
 
         jMenu.setText("Menu");
 
+        itemConfirmarReunioes.setText("Confirmar Reuniões");
+        itemConfirmarReunioes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemConfirmarReunioesActionPerformed(evt);
+            }
+        });
+        jMenu.add(itemConfirmarReunioes);
+
         itemCadNovoEspaco.setText("Cadastrar novo espaço");
+        itemCadNovoEspaco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCadNovoEspacoActionPerformed(evt);
+            }
+        });
         jMenu.add(itemCadNovoEspaco);
 
         itemSair.setText("Sair");
@@ -150,20 +95,21 @@ public class Gestor extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_itemSairActionPerformed
 
-    private void btnAdicionarSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarSalaActionPerformed
-       DefaultTableModel salasModel = (DefaultTableModel) salasCadastradas.getModel();
-       Object[] dados = {txtSala.getText(), txtStatus.getText()};
-       salasModel.addRow(dados);
-    }//GEN-LAST:event_btnAdicionarSalaActionPerformed
+    private void itemConfirmarReunioesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemConfirmarReunioesActionPerformed
+        jMenu.remove(itemConfirmarReunioes);
+        jMenu.add(itemCadNovoEspaco, 0);
+        TelaGestor.removeAll();
+        TelaGestor.add(gcr.getContentPane());
+        TelaGestor.repaint();
+    }//GEN-LAST:event_itemConfirmarReunioesActionPerformed
 
-    private void btnRemoverSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverSalaActionPerformed
-        DefaultTableModel salasModel = (DefaultTableModel) salasCadastradas.getModel();
-        if(salasCadastradas.getSelectedRow() != -1) {
-            salasModel.removeRow(salasCadastradas.getSelectedRow());
-        } else {
-            System.out.println("Selecione um item para remover.");
-        }
-    }//GEN-LAST:event_btnRemoverSalaActionPerformed
+    private void itemCadNovoEspacoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadNovoEspacoActionPerformed
+        jMenu.remove(itemCadNovoEspaco);
+        jMenu.add(itemConfirmarReunioes, 0);
+        TelaGestor.removeAll();
+        TelaGestor.add(gcne.getContentPane());
+        TelaGestor.repaint();
+    }//GEN-LAST:event_itemCadNovoEspacoActionPerformed
 
     //<editor-fold defaultstate="collapsed" desc="Generated Code">
     public static void main(String args[]) {
@@ -201,18 +147,11 @@ public class Gestor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel TelaGestor;
-    private javax.swing.JButton btnAdicionarSala;
-    private javax.swing.JButton btnRemoverSala;
     private javax.swing.JMenuItem itemCadNovoEspaco;
+    private javax.swing.JMenuItem itemConfirmarReunioes;
     private javax.swing.JMenuItem itemSair;
     private javax.swing.JMenu jMenu;
     private javax.swing.JMenuBar jMenuBar;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lbSala;
-    private javax.swing.JLabel lbStatus;
-    private javax.swing.JTable salasCadastradas;
-    private javax.swing.JTextField txtSala;
-    private javax.swing.JTextField txtStatus;
     // End of variables declaration//GEN-END:variables
     //</editor-fold>
 }

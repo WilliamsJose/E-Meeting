@@ -53,7 +53,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btnEntrar" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="txtSenha" min="-2" pref="295" max="-2" attributes="0"/>
-                      <Component id="txtNome" min="-2" pref="295" max="-2" attributes="0"/>
+                      <Component id="txtUsuario" min="-2" pref="295" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="228" max="32767" attributes="0"/>
               </Group>
@@ -71,7 +71,7 @@
                   <Component id="lbNomeApp" min="-2" pref="46" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtNome" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lbNome" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -98,7 +98,7 @@
             <Property name="text" type="java.lang.String" value="Usuario:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtNome">
+        <Component class="javax.swing.JTextField" name="txtUsuario">
         </Component>
         <Component class="javax.swing.JLabel" name="lbSenha">
           <Properties>

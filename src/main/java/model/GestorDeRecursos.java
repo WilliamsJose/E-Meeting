@@ -8,8 +8,8 @@ public class GestorDeRecursos extends Usuario {
     private String setor;
     private final String permission = "GestorDeRecursos";
   
-    public GestorDeRecursos(String setor, String nome, String cpf, char[] senha) {
-        super(nome, cpf, senha);
+    public GestorDeRecursos(String setor, String nome, String usuario, String cpf, char[] senha) {
+        super(nome, usuario, cpf, senha);
         this.setor = setor;
     }
 

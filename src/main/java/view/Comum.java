@@ -1,11 +1,13 @@
 package view;
 
+import contents.CriarReuniao;
+
 /**
  *
  * @author Williams
  */
 public class Comum extends javax.swing.JFrame {
-    ContentCriarReuniao reuniao = new ContentCriarReuniao();
+    CriarReuniao cr = new CriarReuniao();
     
     public Comum() {
         initComponents();
@@ -73,12 +75,15 @@ public class Comum extends javax.swing.JFrame {
 
     private void itemCriarReuniaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCriarReuniaoActionPerformed
         TelaComum.removeAll();
-        TelaComum.add(reuniao.getContentPane());
+        TelaComum.add(cr.getContentPane());
         TelaComum.repaint();
     }//GEN-LAST:event_itemCriarReuniaoActionPerformed
 
     private void itemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSairActionPerformed
-        System.exit(0);
+        Principal p = new Principal();
+        p.setLocationRelativeTo(null);
+        p.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_itemSairActionPerformed
 
     //<editor-fold defaultstate="collapsed" desc="Generated Code">

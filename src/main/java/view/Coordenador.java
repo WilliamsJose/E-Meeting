@@ -20,9 +20,9 @@ public class Coordenador extends javax.swing.JFrame {
         jMenu = new javax.swing.JMenu();
         itemCriarReuniao = new javax.swing.JMenuItem();
         itemEditarAtas = new javax.swing.JMenuItem();
+        itemSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 500));
         setResizable(false);
 
         jLabel1.setText("Coordenador");
@@ -58,6 +58,14 @@ public class Coordenador extends javax.swing.JFrame {
         });
         jMenu.add(itemEditarAtas);
 
+        itemSair.setText("Sair");
+        itemSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemSairActionPerformed(evt);
+            }
+        });
+        jMenu.add(itemSair);
+
         jMenuBar.add(jMenu);
 
         setJMenuBar(jMenuBar);
@@ -70,7 +78,7 @@ public class Coordenador extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Tela, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
+            .addComponent(Tela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -79,6 +87,13 @@ public class Coordenador extends javax.swing.JFrame {
     private void itemEditarAtasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEditarAtasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_itemEditarAtasActionPerformed
+
+    private void itemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSairActionPerformed
+        Principal p = new Principal();
+        p.setLocationRelativeTo(null);
+        p.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_itemSairActionPerformed
     
     //<editor-fold defaultstate="collapsed" desc="Generated Code">
     /**
@@ -120,6 +135,7 @@ public class Coordenador extends javax.swing.JFrame {
     private javax.swing.JPanel Tela;
     private javax.swing.JMenuItem itemCriarReuniao;
     private javax.swing.JMenuItem itemEditarAtas;
+    private javax.swing.JMenuItem itemSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu;
     private javax.swing.JMenuBar jMenuBar;

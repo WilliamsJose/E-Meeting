@@ -33,12 +33,24 @@ public class DB {
     }
     
     // Referentes as Salas
-    public static ArrayList<Sala> getSalas() {
+    public ArrayList<Sala> getSalas() {
         return salas;
     }
 
-    public static void addSala(Sala sala) {
+    public void addSala(Sala sala) {
         DB.salas.add(sala);
+    }
+    
+    public void removeSala(String sala) {
+        try{
+            for(Sala item : salas) {
+                if(item.getSala().equals(sala)) {
+                    salas.remove(item);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
     
 }

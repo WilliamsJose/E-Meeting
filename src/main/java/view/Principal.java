@@ -1,12 +1,15 @@
 package view;
 
+import contents.Login;
+import contents.CadastroComum;
+
 /**
  *
  * @author Williams
  */
 public class Principal extends javax.swing.JFrame {
-    ContentCadastroComum c = new ContentCadastroComum();
-    ContentLogin l = new ContentLogin(this);
+    CadastroComum c = new CadastroComum();
+    Login l = new Login(this);
 
     public Principal() {
         initComponents();

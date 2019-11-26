@@ -5,6 +5,7 @@ package model;
  */
 public class Usuario {
     private String nome;
+    private String usuario;
     private String cpf;
     private int matricula;
     private int telefone;
@@ -14,21 +15,24 @@ public class Usuario {
     public String toString() {
         return "Usuario{ " + 
                 "\n nome=" + this.nome + 
+                "\n usuário=" + this.usuario + 
                 "\n CPF=" + this.cpf + 
-                "\n matricula=" + this.matricula +
+                "\n matrícula=" + this.matricula +
                 "\n senha=" + this.senha + "\n}";
     }
 
-    public Usuario(String nome, String cpf, int matricula, int telefone, char[] senha) {
+    public Usuario(String nome, String usuario, String cpf, int matricula, int telefone, char[] senha) {
         this.nome = nome;
+        this.usuario = usuario;
         this.cpf = cpf;
         this.matricula = matricula;
         this.telefone = telefone;
         this.senha = senha;
     }
 
-    public Usuario(String nome, String cpf, char[] senha) {
+    public Usuario(String nome, String usuario, String cpf, char[] senha) {
         this.nome = nome;
+        this.usuario = usuario;
         this.cpf = cpf;
         this.senha = senha;
     }
@@ -62,6 +66,14 @@ public class Usuario {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public int getMatricula() {

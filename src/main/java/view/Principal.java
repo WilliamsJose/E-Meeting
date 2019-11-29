@@ -29,6 +29,7 @@ public class Principal extends javax.swing.JFrame {
         itemSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         javax.swing.GroupLayout TelaPrincipalLayout = new javax.swing.GroupLayout(TelaPrincipal);
         TelaPrincipal.setLayout(TelaPrincipalLayout);

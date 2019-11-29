@@ -5,12 +5,18 @@ package model;
  * @author Williams
  */
 public class Sala {
+    private final String id;
     private String sala;
     private String status;
 
-    public Sala(String sala, String status) {
+    public Sala(String id, String sala, String status) {
+        this.id = id;
         this.sala = sala;
         this.status = status;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getSala() {

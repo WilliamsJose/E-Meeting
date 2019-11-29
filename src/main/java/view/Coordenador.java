@@ -1,11 +1,16 @@
 package view;
 
+import contents.CriarReuniao;
+import contents.ListaReunioes;
+
 /**
  *
  * @author Williams
  */
 public class Coordenador extends javax.swing.JFrame {
-
+    CriarReuniao cr = new CriarReuniao();
+    ListaReunioes lr = new ListaReunioes();
+    
     public Coordenador() {
         initComponents();
     }
@@ -23,6 +28,7 @@ public class Coordenador extends javax.swing.JFrame {
         itemSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("E-Meeting Coordenador");
         setResizable(false);
 
         jLabel1.setText("Coordenador");
@@ -48,6 +54,11 @@ public class Coordenador extends javax.swing.JFrame {
         jMenu.setText("Menu");
 
         itemCriarReuniao.setText("Criar Reunião");
+        itemCriarReuniao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCriarReuniaoActionPerformed(evt);
+            }
+        });
         jMenu.add(itemCriarReuniao);
 
         itemEditarAtas.setText("Editar Atas");
@@ -85,7 +96,10 @@ public class Coordenador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemEditarAtasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEditarAtasActionPerformed
-        // TODO add your handling code here:
+        Tela.removeAll();
+        lr.carregaReunioes();
+        Tela.add(lr.getContentPane());
+        Tela.repaint();
     }//GEN-LAST:event_itemEditarAtasActionPerformed
 
     private void itemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSairActionPerformed
@@ -94,6 +108,12 @@ public class Coordenador extends javax.swing.JFrame {
         p.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_itemSairActionPerformed
+
+    private void itemCriarReuniaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCriarReuniaoActionPerformed
+        Tela.removeAll();
+        Tela.add(cr.getContentPane());
+        Tela.repaint();
+    }//GEN-LAST:event_itemCriarReuniaoActionPerformed
     
     //<editor-fold defaultstate="collapsed" desc="Generated Code">
     /**

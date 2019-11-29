@@ -1,5 +1,7 @@
 package view;
 
+import java.util.UUID;
+
 import db.DB;
 import model.Coordenador;
 import model.GestorDeRecursos;
@@ -14,14 +16,14 @@ public class Main {
         DB db = new DB();
         
         // Adiciona um gestor e um coordenador ao sistema
-        Coordenador c = new Coordenador("João", "joao", "115.385.772-32", 846516546, 846464648, "321".toCharArray(), "SI");
-        GestorDeRecursos g = new GestorDeRecursos("Administrativo", "Carlos", "carlos", "115.513.845-55", "321".toCharArray());
+        Coordenador c = new Coordenador("João", "coord", "115.385.772-32", 846516546, 846464648, "321".toCharArray(), "SI");
+        GestorDeRecursos g = new GestorDeRecursos("Administrativo", "Carlos", "gest", "115.513.845-55", "321".toCharArray());
         db.addUsuario(c);
         db.addUsuario(g);
         
-        // Adiciona algumas sala de inicio
-        Sala s = new Sala("A 003", "Disponível" );
-        Sala s2 = new Sala("A 004", "Disponível" );
+        // Adiciona algumas salas de inicio
+        Sala s = new Sala(UUID.randomUUID().toString(), "A 003", "Disponível" );
+        Sala s2 = new Sala(UUID.randomUUID().toString(), "A 004", "Disponível" );
         db.addSala(s);
         db.addSala(s2);
         

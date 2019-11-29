@@ -30,7 +30,7 @@ public class Gestor extends javax.swing.JFrame {
         itemSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Gestor");
+        setTitle("E-Meeting Gestor");
         setResizable(false);
 
         javax.swing.GroupLayout TelaGestorLayout = new javax.swing.GroupLayout(TelaGestor);

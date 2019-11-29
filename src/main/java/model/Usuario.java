@@ -1,9 +1,14 @@
 package model;
+
+import java.util.UUID;
+
 /**
  *
  * @author Williams
  */
 public class Usuario {
+    // attr
+    private final String id = UUID.randomUUID().toString();
     private String nome;
     private String usuario;
     private String cpf;
@@ -12,15 +17,18 @@ public class Usuario {
     private char[] senha;
     private final String permission = "Comum";
     
+    // metodos
     public String toString() {
-        return "Usuario{ " + 
-                "\n nome=" + this.nome + 
-                "\n usuário=" + this.usuario + 
-                "\n CPF=" + this.cpf + 
-                "\n matrícula=" + this.matricula +
-                "\n senha=" + this.senha + "\n}";
+        return "Usuario{ "
+                +"\n id=" + this.id
+                +"\n nome=" + this.nome
+                +"\n usuário=" + this.usuario
+                +"\n CPF=" + this.cpf
+                +"\n matrícula=" + this.matricula 
+                +"\n senha=" + this.senha + "\n}";
     }
 
+    // construtores
     public Usuario(String nome, String usuario, String cpf, int matricula, int telefone, char[] senha) {
         this.nome = nome;
         this.usuario = usuario;
@@ -40,6 +48,10 @@ public class Usuario {
     public Usuario(){}
 
     //<editor-fold defaultstate="collapsed" desc="Getters and Setters">
+    public String getId() {
+        return id;
+    }
+    
     public String getPermission() {
         return permission;
     }

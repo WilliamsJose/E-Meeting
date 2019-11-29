@@ -17,6 +17,11 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemCriarReuniaoActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="itemEditarReunioes">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Editar minhas Reuni&#xf5;es"/>
+              </Properties>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemSair">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sair"/>
@@ -32,6 +37,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="E-Meeting"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>

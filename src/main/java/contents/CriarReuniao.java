@@ -1,14 +1,22 @@
 package contents;
-import db.DB;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
+import db.DB;
+import java.awt.HeadlessException;
+import java.util.UUID;
 import model.Sala;
 import model.Usuario;
+import model.Participante;
+import model.Reuniao;
 /**
  *
  * @author Williams
  */
 public class CriarReuniao extends javax.swing.JFrame {
     DB db = new DB();
+    ArrayList<Participante> participantes = new ArrayList();
 
     public CriarReuniao() {
         initComponents();
@@ -37,20 +45,26 @@ public class CriarReuniao extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txtAta = new javax.swing.JTextPane();
         lbAta = new javax.swing.JLabel();
+        lbPrivacidade = new javax.swing.JLabel();
+        txtPrivacidade = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 477));
+        setResizable(false);
 
-        lbTema.setText("Tema da Reunião ou Ata:");
+        lbTema.setText("Tema da Reunião ou Ata*:");
+        lbTema.setToolTipText("Obrigatório");
 
         txtTema.setToolTipText("Digite o tem da reunião");
 
-        lbData.setText("Data:");
+        lbData.setText("Data*:");
+        lbData.setToolTipText("Obrigatório");
 
         txtData.setToolTipText("Digite a data de quando acontecerá a reunião");
 
-        lbSala.setText("Sala:");
+        lbSala.setText("Sala*:");
+        lbSala.setToolTipText("Obrigatório");
 
+        txtSala.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
         txtSala.setToolTipText("Sugira uma sala onde acontecerá a reunião");
 
         jLabel1.setText("Adicionar Participantes:");
@@ -111,7 +125,13 @@ public class CriarReuniao extends javax.swing.JFrame {
         txtAta.setToolTipText("Aqui você pode digitar toda sua ata.");
         jScrollPane2.setViewportView(txtAta);
 
-        lbAta.setText("Ata:");
+        lbAta.setText("Ata*:");
+        lbAta.setToolTipText("Obrigatório");
+
+        lbPrivacidade.setText("Privacidade da reunião*:");
+        lbPrivacidade.setToolTipText("Obrigatório");
+
+        txtPrivacidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Público", "Privado" }));
 
         javax.swing.GroupLayout JPCriarReuniaoLayout = new javax.swing.GroupLayout(JPCriarReuniao);
         JPCriarReuniao.setLayout(JPCriarReuniaoLayout);
@@ -120,34 +140,31 @@ public class CriarReuniao extends javax.swing.JFrame {
             .addGroup(JPCriarReuniaoLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(JPCriarReuniaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JPCriarReuniaoLayout.createSequentialGroup()
-                        .addComponent(lbTema)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(JPCriarReuniaoLayout.createSequentialGroup()
-                        .addGroup(JPCriarReuniaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(JPCriarReuniaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JPCriarReuniaoLayout.createSequentialGroup()
-                                    .addComponent(btnAdicionarParticipante)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
-                                    .addComponent(btnRemoverParticipante))
-                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtData, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtTema, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtSala, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtParticipante, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                            .addComponent(lbSala)
-                            .addComponent(lbData))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                        .addGroup(JPCriarReuniaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbAta)
-                            .addGroup(JPCriarReuniaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(JPCriarReuniaoLayout.createSequentialGroup()
-                                    .addComponent(btnLimparTudo)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnCriarReuniao))
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(25, 25, 25))))
+                    .addGroup(JPCriarReuniaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JPCriarReuniaoLayout.createSequentialGroup()
+                            .addComponent(btnAdicionarParticipante)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
+                            .addComponent(btnRemoverParticipante))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtData, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtTema, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtSala, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtParticipante, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(lbSala)
+                    .addComponent(lbData)
+                    .addComponent(lbTema))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGroup(JPCriarReuniaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lbAta)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPCriarReuniaoLayout.createSequentialGroup()
+                        .addComponent(btnLimparTudo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCriarReuniao))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                    .addComponent(lbPrivacidade)
+                    .addComponent(txtPrivacidade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
         JPCriarReuniaoLayout.setVerticalGroup(
             JPCriarReuniaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,14 +172,18 @@ public class CriarReuniao extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(JPCriarReuniaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbTema)
+                    .addComponent(lbPrivacidade))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JPCriarReuniaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPrivacidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JPCriarReuniaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbData)
                     .addComponent(lbAta))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(JPCriarReuniaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JPCriarReuniaoLayout.createSequentialGroup()
-                        .addComponent(txtTema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbData)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lbSala)
@@ -177,7 +198,7 @@ public class CriarReuniao extends javax.swing.JFrame {
                             .addComponent(btnAdicionarParticipante)
                             .addComponent(btnRemoverParticipante))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))
                     .addGroup(JPCriarReuniaoLayout.createSequentialGroup()
                         .addComponent(jScrollPane2)
                         .addGap(18, 18, 18)
@@ -204,12 +225,23 @@ public class CriarReuniao extends javax.swing.JFrame {
     private void btnAdicionarParticipanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarParticipanteActionPerformed
         String p = txtParticipante.getText();
         DefaultTableModel participantesModel = (DefaultTableModel) saidaParticipantes.getModel();
+        Participante participante = null;
+        Object[] participanteO = null;
         
         for(Usuario u : db.getUsuarios()) {
             if(u.getUsuario().equals(p)){
-                Object[] usuario = {u.getNome(), u.getTelefone(), u.getUsuario()};
-                participantesModel.addRow(usuario);
+                participanteO = new Object[] {u.getNome(), u.getTelefone(), u.getUsuario()};
+                participante = new Participante(u.getId(), u.getNome(), u.getTelefone(), u.getUsuario());
             }
+        }
+        
+        if(participante == null) {
+            JOptionPane.showMessageDialog(null, "Usuário não encontrado.");
+        } else if(participante.getId().equals(db.getUsuarioLogado().getId())) {
+            JOptionPane.showMessageDialog(null, "Você não pode adicionar a si mesmo na reunião.");
+        } else {
+            participantes.add(participante);
+            participantesModel.addRow(participanteO);
         }
         
         txtParticipante.setText(null);
@@ -218,20 +250,64 @@ public class CriarReuniao extends javax.swing.JFrame {
     private void btnRemoverParticipanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverParticipanteActionPerformed
         DefaultTableModel participantesModel = (DefaultTableModel) saidaParticipantes.getModel();
         participantesModel.removeRow(saidaParticipantes.getSelectedRow());
+        
+        // remove o participante removido da tabela do array participantes 
+        for (Participante p : participantes) {
+            if(p.getUsuario().equals(saidaParticipantes.getValueAt(saidaParticipantes.getSelectedRow(), 2))) {
+                    participantes.remove(p);
+            }
+        }
     }//GEN-LAST:event_btnRemoverParticipanteActionPerformed
 
     private void btnLimparTudoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparTudoActionPerformed
-        // TODO add your handling code here:
+        limpaCampos();
     }//GEN-LAST:event_btnLimparTudoActionPerformed
 
     private void btnCriarReuniaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarReuniaoActionPerformed
-        // TODO add your handling code here:
+        if(camposVazios()){
+            JOptionPane.showMessageDialog(null, "Por favor preencha todos os campos!");
+        } else {
+            String tema = txtTema.getText(), data = txtData.getText(), sala = txtSala.getSelectedItem().toString(), ata = txtAta.getText(), id = UUID.randomUUID().toString(), criadorNome = db.getUsuarioLogado().getNome(), criadorID = db.getUsuarioLogado().getId();
+            boolean privado = txtPrivacidade.getSelectedItem().toString().equals("Privado");
+            
+            try{
+                Reuniao r = new Reuniao(id, criadorNome, criadorID, tema, data, sala, privado, ata);
+                db.addReuniao(r);
+                limpaCampos();
+                participantes.clear();
+                JOptionPane.showMessageDialog(null, "Reunião Cadastrada com êxito!");
+            } catch(HeadlessException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }//GEN-LAST:event_btnCriarReuniaoActionPerformed
 
+    // método para verificar se os camps estão vazios
+    private boolean camposVazios() {
+        if (txtAta.getText().isEmpty() || txtData.getText().isEmpty() || txtTema.getText().isEmpty() || txtSala.getSelectedItem().toString().isEmpty() || txtPrivacidade.getSelectedItem().toString().isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     private void preencheComboSalas(){
         for(Sala sala : db.getSalas()) {
             txtSala.addItem(sala.getSala());
         }
+    }
+    
+    private void limpaCampos() {
+        DefaultTableModel participantesModel = (DefaultTableModel) saidaParticipantes.getModel();
+        participantesModel.getDataVector().removeAllElements();
+        participantesModel.fireTableDataChanged();
+        txtAta.setText(null);
+        txtData.setText(null);
+        txtTema.setText(null);
+        txtPrivacidade.setSelectedIndex(0);
+        txtSala.setSelectedIndex(0);
+        txtParticipante.setText(null);
+        participantes.clear();
     }
     
     // <editor-fold defaultstate="collapsed" desc="Main e Variáveis Geradas Automaticamente"> 
@@ -279,12 +355,14 @@ public class CriarReuniao extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lbAta;
     private javax.swing.JLabel lbData;
+    private javax.swing.JLabel lbPrivacidade;
     private javax.swing.JLabel lbSala;
     private javax.swing.JLabel lbTema;
     private javax.swing.JTable saidaParticipantes;
     private javax.swing.JTextPane txtAta;
     private javax.swing.JTextField txtData;
     private javax.swing.JTextField txtParticipante;
+    private javax.swing.JComboBox<String> txtPrivacidade;
     private javax.swing.JComboBox<String> txtSala;
     private javax.swing.JTextField txtTema;
     // End of variables declaration//GEN-END:variables

@@ -21,9 +21,11 @@ public class Comum extends javax.swing.JFrame {
         jMenuBar = new javax.swing.JMenuBar();
         jMenu = new javax.swing.JMenu();
         itemCriarReuniao = new javax.swing.JMenuItem();
+        itemEditarReunioes = new javax.swing.JMenuItem();
         itemSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("E-Meeting");
         setResizable(false);
 
         javax.swing.GroupLayout TelaComumLayout = new javax.swing.GroupLayout(TelaComum);
@@ -46,6 +48,9 @@ public class Comum extends javax.swing.JFrame {
             }
         });
         jMenu.add(itemCriarReuniao);
+
+        itemEditarReunioes.setText("Editar minhas Reuniões");
+        jMenu.add(itemEditarReunioes);
 
         itemSair.setText("Sair");
         itemSair.addActionListener(new java.awt.event.ActionListener() {
@@ -122,6 +127,7 @@ public class Comum extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel TelaComum;
     private javax.swing.JMenuItem itemCriarReuniao;
+    private javax.swing.JMenuItem itemEditarReunioes;
     private javax.swing.JMenuItem itemSair;
     private javax.swing.JMenu jMenu;
     private javax.swing.JMenuBar jMenuBar;

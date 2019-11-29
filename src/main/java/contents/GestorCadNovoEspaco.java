@@ -1,6 +1,7 @@
 package contents;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
+import java.util.UUID;
 
 import db.DB;
 import model.Sala;
@@ -31,17 +32,18 @@ public class GestorCadNovoEspaco extends javax.swing.JFrame {
         txtStatus = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         salasCadastradas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Sala", "Status"
+                "ID", "Sala", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -49,6 +51,11 @@ public class GestorCadNovoEspaco extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(salasCadastradas);
+        if (salasCadastradas.getColumnModel().getColumnCount() > 0) {
+            salasCadastradas.getColumnModel().getColumn(0).setMinWidth(0);
+            salasCadastradas.getColumnModel().getColumn(0).setPreferredWidth(0);
+            salasCadastradas.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
 
         btnAdicionarSala.setText("Adicionar");
         btnAdicionarSala.addActionListener(new java.awt.event.ActionListener() {
@@ -74,42 +81,46 @@ public class GestorCadNovoEspaco extends javax.swing.JFrame {
         TelaGestor.setLayout(TelaGestorLayout);
         TelaGestorLayout.setHorizontalGroup(
             TelaGestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TelaGestorLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TelaGestorLayout.createSequentialGroup()
                 .addGroup(TelaGestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TelaGestorLayout.createSequentialGroup()
+                        .addContainerGap(30, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(TelaGestorLayout.createSequentialGroup()
-                        .addGroup(TelaGestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtSala, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbSala, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAdicionarSala))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(TelaGestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TelaGestorLayout.createSequentialGroup()
-                                .addComponent(lbStatus)
-                                .addGap(336, 336, 336))
-                            .addComponent(txtStatus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRemoverSala))))
-                .addContainerGap())
+                            .addGroup(TelaGestorLayout.createSequentialGroup()
+                                .addComponent(lbSala)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(TelaGestorLayout.createSequentialGroup()
+                                .addGroup(TelaGestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnAdicionarSala)
+                                    .addComponent(txtSala, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(TelaGestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbStatus)
+                                    .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnRemoverSala))))))
+                .addGap(25, 25, 25))
         );
         TelaGestorLayout.setVerticalGroup(
             TelaGestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TelaGestorLayout.createSequentialGroup()
-                .addContainerGap(76, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
                 .addGroup(TelaGestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbSala)
                     .addComponent(lbStatus))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(TelaGestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
+                    .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(TelaGestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdicionarSala)
                     .addComponent(btnRemoverSala))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -129,20 +140,23 @@ public class GestorCadNovoEspaco extends javax.swing.JFrame {
     private void preencheJTable() {
         DefaultTableModel salasModel = (DefaultTableModel) salasCadastradas.getModel();
         for(Sala sala : db.getSalas()){
-            Object[] salaObj = {sala.getSala(), sala.getStatus()};
+            Object[] salaObj = {sala.getId(), sala.getSala(), sala.getStatus()};
             salasModel.addRow(salaObj);
         }
     }
     
     private void btnAdicionarSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarSalaActionPerformed
         if(!txtSala.getText().isEmpty()){
+            String id = UUID.randomUUID().toString(), sala = txtSala.getText(), status = txtStatus.getSelectedItem().toString();
+            
             // Adicionando linhas no jtable
             DefaultTableModel salasModel = (DefaultTableModel) salasCadastradas.getModel();
-            Object[] dados = {txtSala.getText(), txtStatus.getSelectedItem()};
+            Object[] dados = {id, sala, status};
             salasModel.addRow(dados);
+            
             // Cria nova sala e adiciona no banco
-            Sala sala = new Sala(txtSala.getText(), txtStatus.getSelectedItem().toString());
-            db.addSala(sala);
+            Sala salaObj = new Sala(id, sala, status);
+            db.addSala(salaObj);
             
             txtSala.setText(null);
         } else {
@@ -154,11 +168,11 @@ public class GestorCadNovoEspaco extends javax.swing.JFrame {
         DefaultTableModel salasModel = (DefaultTableModel) salasCadastradas.getModel();
         if(salasCadastradas.getSelectedRow() != -1) {
             int linha = salasCadastradas.getSelectedRow();
-            String salaSelecionada = (String) salasModel.getValueAt(linha, 0);
-            // Remove sala do "banco" e do jtable
-            db.removeSala(salaSelecionada);
-            salasModel.removeRow(linha);
+            String idSala = (String) salasModel.getValueAt(linha, 0);
             
+            // Remove sala do "banco" e do jtable
+            db.removeSala(idSala);
+            salasModel.removeRow(linha);
         } else {
             JOptionPane.showMessageDialog(null, "Selecione um item para remover.");
         }

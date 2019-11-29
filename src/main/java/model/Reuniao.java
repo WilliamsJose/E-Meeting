@@ -14,12 +14,12 @@ public class Reuniao {
     private String tema;
     private String data;
     private String sala;
-    private ArrayList participantes;
+    private ArrayList<Participante> participantes;
     private boolean privado;
     private String ata;
 
     // construtores
-    public Reuniao(String id, String criadorNome, String criadorID, String tema, String data, String sala, ArrayList participantes, boolean privado, String ata) {
+    public Reuniao(String id, String criadorNome, String criadorID, String tema, String data, String sala, ArrayList<Participante> participantes, boolean privado, String ata) {
         this.id = id;
         this.criadorNome = criadorNome;
         this.criadorID = criadorID;
@@ -80,7 +80,7 @@ public class Reuniao {
         this.sala = sala;
     }
 
-    public ArrayList getParticipantes() {
+    public ArrayList<Participante> getParticipantes() {
         return participantes;
     }
 

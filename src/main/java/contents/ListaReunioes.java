@@ -2,6 +2,7 @@ package contents;
 
 import model.Reuniao;
 import db.DB;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -97,13 +98,31 @@ public class ListaReunioes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel tr = (DefaultTableModel) tableListaReunioes.getModel();
+        int linha = tableListaReunioes.getSelectedRow();
+        if(linha != -1) {
+            for(Reuniao r : db.getReunioes()) {
+                if(r.getId().equals(tr.getValueAt(linha, 0))) {
+                    CriarReuniao cr = new CriarReuniao(r, this);
+                    cr.setVisible(true);
+                    cr.setLocationRelativeTo(null);
+                }
+            }
+            tr.getDataVector().removeAllElements();
+            tr.fireTableDataChanged();
+            carregaReunioes();
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione uma reunião para editar");
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     public void carregaReunioes() {
         DefaultTableModel tr = (DefaultTableModel) tableListaReunioes.getModel();
         int i = 0;
         for(Reuniao r : db.getReunioes()) {
+            /*  catch insere a primeira linha caso não exista nenhuma
+                após faz uma verificação simples se uma linha já existe pelo ID e insere apenas as que ainda não foram inseridas.
+            */
             try{
                 if(!tr.getValueAt(i, 0).equals(r.getId())) {
                     tr.addRow(new Object[] {r.getId(), r.getTema(), r.getData(), r.getSala(), (r.isPrivado() ? "Privado" : "Público"), r.getCriadorNome()});

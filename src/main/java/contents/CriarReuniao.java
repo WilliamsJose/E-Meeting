@@ -2,10 +2,12 @@ package contents;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
-import db.DB;
 import java.awt.HeadlessException;
 import java.util.UUID;
+import javax.swing.text.MaskFormatter;
+
+import db.DB;
+import java.text.ParseException;
 import model.Sala;
 import model.Usuario;
 import model.Participante;
@@ -17,10 +19,22 @@ import model.Reuniao;
 public class CriarReuniao extends javax.swing.JFrame {
     DB db = new DB();
     ArrayList<Participante> participantes = new ArrayList();
+    Reuniao reuniao = null;
+    ListaReunioes listaReunioes = null;
 
     public CriarReuniao() {
         initComponents();
         preencheComboSalas();
+        setDCO(EXIT_ON_CLOSE);
+    }
+    
+    public CriarReuniao(Reuniao r, ListaReunioes l) {
+        initComponents();
+        this.reuniao = r;
+        this.listaReunioes = l;
+        setDCO(DISPOSE_ON_CLOSE);
+        preencheComboSalas();
+        editandoReuniao();
     }
 
     @SuppressWarnings("unchecked")
@@ -31,34 +45,43 @@ public class CriarReuniao extends javax.swing.JFrame {
         lbTema = new javax.swing.JLabel();
         txtTema = new javax.swing.JTextField();
         lbData = new javax.swing.JLabel();
-        txtData = new javax.swing.JTextField();
-        lbSala = new javax.swing.JLabel();
-        txtSala = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
-        txtParticipante = new javax.swing.JTextField();
-        btnAdicionarParticipante = new javax.swing.JButton();
-        btnRemoverParticipante = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        saidaParticipantes = new javax.swing.JTable();
-        btnLimparTudo = new javax.swing.JButton();
-        btnCriarReuniao = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtAta = new javax.swing.JTextPane();
-        lbAta = new javax.swing.JLabel();
-        lbPrivacidade = new javax.swing.JLabel();
-        txtPrivacidade = new javax.swing.JComboBox<>();
+        MaskFormatter format = new MaskFormatter();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
+        format.setValueContainsLiteralCharacters(false);
+        String dateformat = "##/##/####";
+        try{
+            format.setMask(dateformat);
+            txtData = new javax.swing.JFormattedTextField(format);
+            lbSala = new javax.swing.JLabel();
+            txtSala = new javax.swing.JComboBox<>();
+            jLabel1 = new javax.swing.JLabel();
+            txtParticipante = new javax.swing.JTextField();
+            btnAdicionarParticipante = new javax.swing.JButton();
+            btnRemoverParticipante = new javax.swing.JButton();
+            jScrollPane3 = new javax.swing.JScrollPane();
+            saidaParticipantes = new javax.swing.JTable();
+            btnLimparTudo = new javax.swing.JButton();
+            btnCriarReuniao = new javax.swing.JButton();
+            jScrollPane2 = new javax.swing.JScrollPane();
+            txtAta = new javax.swing.JTextPane();
+            lbAta = new javax.swing.JLabel();
+            lbPrivacidade = new javax.swing.JLabel();
+            txtPrivacidade = new javax.swing.JComboBox<>();
 
-        lbTema.setText("Tema da Reunião ou Ata*:");
-        lbTema.setToolTipText("Obrigatório");
+            setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+            setResizable(false);
 
-        txtTema.setToolTipText("Digite o tem da reunião");
+            lbTema.setText("Tema da Reunião ou Ata*:");
+            lbTema.setToolTipText("Obrigatório");
 
-        lbData.setText("Data*:");
-        lbData.setToolTipText("Obrigatório");
+            txtTema.setToolTipText("Digite o tem da reunião");
 
+            lbData.setText("Data*:");
+            lbData.setToolTipText("Obrigatório");
+
+        } catch(ParseException ex){
+            ex.printStackTrace();
+        }
         txtData.setToolTipText("Digite a data de quando acontecerá a reunião");
 
         lbSala.setText("Sala*:");
@@ -93,11 +116,11 @@ public class CriarReuniao extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "Telefone", "Usuário"
+                "", "Nome", "Telefone", "Usuário"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -105,6 +128,11 @@ public class CriarReuniao extends javax.swing.JFrame {
             }
         });
         jScrollPane3.setViewportView(saidaParticipantes);
+        if (saidaParticipantes.getColumnModel().getColumnCount() > 0) {
+            saidaParticipantes.getColumnModel().getColumn(0).setMinWidth(0);
+            saidaParticipantes.getColumnModel().getColumn(0).setPreferredWidth(0);
+            saidaParticipantes.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
 
         btnLimparTudo.setText("Limpar Tudo");
         btnLimparTudo.setToolTipText("Limpa todos os campos");
@@ -222,6 +250,32 @@ public class CriarReuniao extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void setDCO(int op) {
+        this.setDefaultCloseOperation(op);
+    }
+    
+    // esse metodo apenas é chamado ao tentar editar uma reuniao existente na tela ListaReunioes
+    private void editandoReuniao() {
+        DefaultTableModel participantesModel = (DefaultTableModel) saidaParticipantes.getModel();
+        btnCriarReuniao.setText("Editar");
+        btnLimparTudo.setVisible(false);
+        
+        txtAta.setText(reuniao.getAta());
+        txtData.setText(reuniao.getData());
+        txtSala.setSelectedItem(reuniao.getSala());
+        txtTema.setText(reuniao.getTema());
+        txtPrivacidade.setSelectedItem(reuniao.isPrivado() ? "Privado" : "Público");
+        
+        try{
+            for(Participante p : reuniao.getParticipantes()) {
+                Object[] pO = {p.getId(), p.getNome(), p.getTelefone(), p.getUsuario()};
+                participantesModel.addRow(pO);
+            }
+        }catch(NullPointerException e) {
+            e.printStackTrace();
+        }
+    }
+    
     private void btnAdicionarParticipanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarParticipanteActionPerformed
         String p = txtParticipante.getText();
         DefaultTableModel participantesModel = (DefaultTableModel) saidaParticipantes.getModel();
@@ -230,7 +284,7 @@ public class CriarReuniao extends javax.swing.JFrame {
         
         for(Usuario u : db.getUsuarios()) {
             if(u.getUsuario().equals(p)){
-                participanteO = new Object[] {u.getNome(), u.getTelefone(), u.getUsuario()};
+                participanteO = new Object[] {u.getId(), u.getNome(), u.getTelefone(), u.getUsuario()};
                 participante = new Participante(u.getId(), u.getNome(), u.getTelefone(), u.getUsuario());
             }
         }
@@ -254,7 +308,7 @@ public class CriarReuniao extends javax.swing.JFrame {
         // remove o participante removido da tabela do array participantes 
         for (Participante p : participantes) {
             if(p.getUsuario().equals(saidaParticipantes.getValueAt(saidaParticipantes.getSelectedRow(), 2))) {
-                    participantes.remove(p);
+                participantes.remove(p);
             }
         }
     }//GEN-LAST:event_btnRemoverParticipanteActionPerformed
@@ -271,7 +325,7 @@ public class CriarReuniao extends javax.swing.JFrame {
             boolean privado = txtPrivacidade.getSelectedItem().toString().equals("Privado");
             
             try{
-                Reuniao r = new Reuniao(id, criadorNome, criadorID, tema, data, sala, privado, ata);
+                Reuniao r = new Reuniao(id, criadorNome, criadorID, tema, data, sala, participantes, privado, ata);
                 db.addReuniao(r);
                 limpaCampos();
                 participantes.clear();

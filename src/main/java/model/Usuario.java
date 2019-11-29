@@ -45,6 +45,12 @@ public class Usuario {
         this.senha = senha;
     }
     
+    public Usuario(String nome, int telefone, String usuario) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.usuario = usuario;
+    }
+    
     public Usuario(){}
 
     //<editor-fold defaultstate="collapsed" desc="Getters and Setters">

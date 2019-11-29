@@ -51,6 +51,12 @@ public class Login extends javax.swing.JFrame {
 
         lbSenha.setText("Senha:");
 
+        txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSenhaKeyReleased(evt);
+            }
+        });
+
         btnEntrar.setText("Entrar");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,7 +118,16 @@ public class Login extends javax.swing.JFrame {
 
     //<editor-fold defaultstate="collapsed" desc="Método Entrar">
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        
+        loginAct();
+    }//GEN-LAST:event_btnEntrarActionPerformed
+
+    private void txtSenhaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyReleased
+        if(evt.getKeyCode() == 10) {
+            loginAct();
+        }
+    }//GEN-LAST:event_txtSenhaKeyReleased
+    
+    private void loginAct() {
         // Tratamento de exceção array vazia / não instanciada.
         try {
             
@@ -169,7 +184,7 @@ public class Login extends javax.swing.JFrame {
         } catch(NullPointerException e) {
             JOptionPane.showMessageDialog(rootPane, "Erro: " + e.getMessage());
         }
-    }//GEN-LAST:event_btnEntrarActionPerformed
+    }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Generated Code">
